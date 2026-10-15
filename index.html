@@ -1735,10 +1735,10 @@
       function updateMusicButtonUI(isPlaying) {
         if (!musicToggleIcon || !musicToggleText) return;
         if (isPlaying) {
-          musicToggleIcon.textContent = '🔊';
+          musicToggleIcon.textContent = '';
           musicToggleText.textContent = 'Nhạc';
         } else {
-          musicToggleIcon.textContent = '🔇';
+          musicToggleIcon.textContent = '';
           musicToggleText.textContent = 'Bật nhạc';
         }
       }
@@ -1834,7 +1834,7 @@
             try { anim.pause(); } catch (e) {}
           });
         } else {
-          pauseResumeIcon.textContent = '⏸';
+          pauseResumeIcon.textContent = '';
           pauseResumeText.textContent = 'Tạm dừng';
           activeWebAnimations.forEach((anim) => {
             try { anim.play(); } catch (e) {}
@@ -2444,8 +2444,8 @@
       toggleReviewBtn.addEventListener('click', function () {
         const isOpen = fullLetterReview.classList.toggle('is-open');
         toggleReviewBtn.innerHTML = isOpen
-          ? '<span>📕 Thu gọn lời nhắn</span>'
-          : '<span>📖 Xem lại toàn bộ lời nhắn từ đầu</span>';
+          ? '<span>Thu gọn lời nhắn</span>'
+          : '<span>Xem lại toàn bộ lời nhắn từ đầu</span>';
       });
 
       heartTriggerBtn.addEventListener('click', startConfessionJourney);
