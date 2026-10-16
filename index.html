@@ -11,17 +11,15 @@
 
   <style>
     /* ==========================================================================
-       1. BIẾN MÀU SẮC & THIẾT LẬP GIAO DIỆN MÂY HỒNG PASTEL
+       1. BIẾN MÀU SẮC & THIẾT LẬP GIAO DIỆN MÂY HỒNG PASTEL (ĐÃ TỐI ƯU GPU)
        ========================================================================== */
     :root {
-      /* Tông màu nền mây hồng pastel từ ảnh gốc */
       --sky-pink: #fdf0f3;
       --cloud-1: #e584a4;
       --cloud-2: #ee9fb9;
       --cloud-3: #f5bace;
       --cloud-4: #fad5e2;
 
-      /* Màu chữ nâu hồng đậm & đỏ rượu vang tương phản cao trên nền sáng */
       --text-wine: #561630;
       --text-rose-brown: #6f2642;
       --text-muted-rose: #98526d;
@@ -29,10 +27,9 @@
       --accent-pink: #ec6b96;
       --accent-soft: #f7acc5;
 
-      /* Nền giấy thư tình trắng hồng trong suốt nhẹ nhàng */
-      --letter-bg: rgba(255, 251, 253, 0.88);
-      --letter-border: rgba(229, 132, 164, 0.36);
-      --letter-shadow: 0 18px 45px rgba(145, 52, 88, 0.12), 0 4px 14px rgba(145, 52, 88, 0.06);
+      --letter-bg: rgba(255, 251, 253, 0.94);
+      --letter-border: rgba(229, 132, 164, 0.38);
+      --letter-shadow: 0 14px 34px rgba(145, 52, 88, 0.1);
 
       --font-body: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       --font-display: 'Plus Jakarta Sans', 'Be Vietnam Pro', sans-serif;
@@ -59,16 +56,14 @@
       line-height: 1.7;
       overflow-x: hidden;
       position: relative;
-      /* Ảnh nền mây hồng phủ toàn màn hình, giữ nguyên tỷ lệ và cố định khi cuộn */
       background-color: var(--sky-pink);
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 900' preserveAspectRatio='xMidYMax slice'%3E%3Cdefs%3E%3Cfilter id='cloudShadow' x='-10%25' y='-15%25' width='120%25' height='130%25'%3E%3CfeDropShadow dx='0' dy='-6' stdDeviation='8' flood-color='%23b5486e' flood-opacity='0.14'/%3E%3C/filter%3E%3C/defs%3E%3Crect width='1440' height='900' fill='%23fdf0f3'/%3E%3Cg filter='url(%23cloudShadow)'%3E%3Cpath fill='%23e584a4' d='M-60,620 a95,95 0 0,1 135,-15 a85,85 0 0,1 125,-25 a135,135 0 0,1 255,-10 a85,85 0 0,1 135,45 a100,100 0 0,1 140,-15 a115,115 0 0,1 195,-45 a110,110 0 0,1 180,-35 a145,145 0 0,1 260,5 a95,95 0 0,1 135,75 L1500,920 L-60,920 Z'/%3E%3Cpath fill='%23ee9fb9' d='M-50,720 a85,85 0 0,1 120,-20 a115,115 0 0,1 195,-15 a90,90 0 0,1 140,25 a95,95 0 0,1 150,-30 a105,105 0 0,1 175,-45 a125,125 0 0,1 225,-15 a105,105 0 0,1 175,20 a95,95 0 0,1 145,25 a85,85 0 0,1 125,15 L1500,920 L-50,920 Z'/%3E%3Cpath fill='%23f5bace' d='M-40,795 a80,80 0 0,1 115,-25 a95,95 0 0,1 160,-5 a85,85 0 0,1 135,10 a100,100 0 0,1 165,-35 a120,120 0 0,1 215,-25 a95,95 0 0,1 160,15 a105,105 0 0,1 175,-5 a95,95 0 0,1 155,20 a85,85 0 0,1 135,20 L1500,920 L-40,920 Z'/%3E%3Cpath fill='%23fad5e2' d='M-40,855 a90,90 0 0,1 145,-15 a100,100 0 0,1 175,-10 a90,90 0 0,1 155,10 a110,110 0 0,1 190,-15 a115,115 0 0,1 205,-20 a105,105 0 0,1 185,5 a100,100 0 0,1 170,10 a90,90 0 0,1 155,15 L1500,920 L-40,920 Z'/%3E%3C/g%3E%3C/svg%3E");
+      /* SVG nền mây hồng tối ưu không dùng filter nặng, giúp cuộn và chạy 60fps mượt mà */
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 900' preserveAspectRatio='xMidYMax slice'%3E%3Crect width='1440' height='900' fill='%23fdf0f3'/%3E%3Cpath fill='%23dfa0b5' opacity='0.28' d='M-60,608 a95,95 0 0,1 135,-15 a85,85 0 0,1 125,-25 a135,135 0 0,1 255,-10 a85,85 0 0,1 135,45 a100,100 0 0,1 140,-15 a115,115 0 0,1 195,-45 a110,110 0 0,1 180,-35 a145,145 0 0,1 260,5 a95,95 0 0,1 135,75 L1500,920 L-60,920 Z'/%3E%3Cpath fill='%23e584a4' d='M-60,620 a95,95 0 0,1 135,-15 a85,85 0 0,1 125,-25 a135,135 0 0,1 255,-10 a85,85 0 0,1 135,45 a100,100 0 0,1 140,-15 a115,115 0 0,1 195,-45 a110,110 0 0,1 180,-35 a145,145 0 0,1 260,5 a95,95 0 0,1 135,75 L1500,920 L-60,920 Z'/%3E%3Cpath fill='%23ee9fb9' d='M-50,720 a85,85 0 0,1 120,-20 a115,115 0 0,1 195,-15 a90,90 0 0,1 140,25 a95,95 0 0,1 150,-30 a105,105 0 0,1 175,-45 a125,125 0 0,1 225,-15 a105,105 0 0,1 175,20 a95,95 0 0,1 145,25 a85,85 0 0,1 125,15 L1500,920 L-50,920 Z'/%3E%3Cpath fill='%23f5bace' d='M-40,795 a80,80 0 0,1 115,-25 a95,95 0 0,1 160,-5 a85,85 0 0,1 135,10 a100,100 0 0,1 165,-35 a120,120 0 0,1 215,-25 a95,95 0 0,1 160,15 a105,105 0 0,1 175,-5 a95,95 0 0,1 155,20 a85,85 0 0,1 135,20 L1500,920 L-40,920 Z'/%3E%3Cpath fill='%23fad5e2' d='M-40,855 a90,90 0 0,1 145,-15 a100,100 0 0,1 175,-10 a90,90 0 0,1 155,10 a110,110 0 0,1 190,-15 a115,115 0 0,1 205,-20 a105,105 0 0,1 185,5 a100,100 0 0,1 170,10 a90,90 0 0,1 155,15 L1500,920 L-40,920 Z'/%3E%3C/svg%3E");
       background-size: cover;
       background-position: center bottom;
       background-repeat: no-repeat;
-      background-attachment: fixed;
     }
 
-    /* Trạng thái tạm dừng toàn bộ CSS animations khi bấm nút Tạm dừng */
     body.is-paused *,
     body.is-paused *::before,
     body.is-paused *::after {
@@ -84,6 +79,7 @@
       pointer-events: none;
       z-index: 6;
       overflow: hidden;
+      contain: strict;
     }
 
     .falling-item {
@@ -105,7 +101,7 @@
       justify-content: center;
       padding: 24px;
       z-index: 35;
-      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.7s ease;
+      transition: opacity 0.65s ease, visibility 0.65s ease;
       user-select: none;
     }
 
@@ -144,7 +140,7 @@
       position: absolute;
       inset: 4px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(236, 107, 150, 0.28) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(236, 107, 150, 0.26) 0%, transparent 70%);
       opacity: 0.9;
       transition: transform 0.4s ease, opacity 0.4s ease;
       pointer-events: none;
@@ -159,14 +155,13 @@
     .main-heart-svg {
       width: 112px;
       height: 112px;
-      filter: drop-shadow(0 12px 26px rgba(216, 59, 108, 0.35));
       animation: naturalHeartbeat 2.3s ease-in-out infinite;
       transform-origin: center;
       will-change: transform;
     }
 
     .heart-trigger.is-bursting .main-heart-svg {
-      animation: heartPreBurst 0.48s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+      animation: heartPreBurst 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
     }
 
     @keyframes naturalHeartbeat {
@@ -188,13 +183,11 @@
     .intro-text-group {
       text-align: center;
       max-width: 440px;
-      background: rgba(255, 251, 253, 0.82);
-      border: 1px solid rgba(229, 132, 164, 0.35);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      background: rgba(255, 251, 253, 0.94);
+      border: 1px solid rgba(229, 132, 164, 0.38);
       padding: 22px 28px;
       border-radius: 24px;
-      box-shadow: 0 12px 32px rgba(162, 62, 98, 0.1);
+      box-shadow: 0 12px 28px rgba(162, 62, 98, 0.1);
       transition: opacity 0.45s ease, transform 0.45s ease;
     }
 
@@ -225,13 +218,12 @@
       font-size: 0.95rem;
       font-weight: 600;
       cursor: pointer;
-      box-shadow: 0 6px 18px rgba(216, 59, 108, 0.28);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: 0 6px 16px rgba(216, 59, 108, 0.25);
+      transition: transform 0.25s ease;
     }
 
     .intro-hint:hover {
       transform: translateY(-2px);
-      box-shadow: 0 9px 22px rgba(216, 59, 108, 0.38);
     }
 
     .burst-particle {
@@ -254,7 +246,7 @@
       height: 0;
       z-index: 45;
       pointer-events: none;
-      transition: transform 1.2s cubic-bezier(0.52, 0.02, 0.26, 1);
+      transition: transform 1.15s cubic-bezier(0.52, 0.02, 0.26, 1);
       will-change: transform;
     }
 
@@ -265,8 +257,8 @@
       transform: translate(-50%, -50%) scale(0.4);
       opacity: 0;
       transition:
-        transform 1.2s cubic-bezier(0.2, 0.88, 0.32, 1.04),
-        opacity 0.5s ease;
+        transform 1.15s cubic-bezier(0.2, 0.88, 0.32, 1.04),
+        opacity 0.45s ease;
       will-change: transform, opacity;
     }
 
@@ -274,8 +266,8 @@
       opacity: 1;
       transform: translate(-50%, -50%) scale(1);
       transition:
-        transform 0.72s cubic-bezier(0.34, 1.56, 0.64, 1),
-        opacity 0.45s ease;
+        transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1),
+        opacity 0.4s ease;
     }
 
     .ai-character {
@@ -295,6 +287,7 @@
       height: 100%;
       position: relative;
       animation: aiGentleFloat 3.4s ease-in-out infinite;
+      will-change: transform;
     }
 
     @keyframes aiGentleFloat {
@@ -302,9 +295,8 @@
       50% { transform: translateY(-5px); }
     }
 
-    /* Giai đoạn vui vẻ lắc nhẹ qua trái phải */
     .ai-character.is-happy-wiggle {
-      animation: aiHappyWiggleBounce 1.15s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+      animation: aiHappyWiggleBounce 1.1s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
     }
 
     @keyframes aiHappyWiggleBounce {
@@ -316,7 +308,6 @@
       100% { transform: translateY(0) rotate(0deg) scale(1); }
     }
 
-    /* Chuyển động nghiêng đầu, gật gù nhẹ khi đang viết câu chữ */
     .ai-character.is-thinking-nod {
       animation: aiThinkingNod 1.4s ease-in-out infinite;
     }
@@ -331,17 +322,15 @@
       width: 100%;
       height: 100%;
       overflow: visible;
-      filter: drop-shadow(0 10px 22px rgba(140, 45, 80, 0.22));
     }
 
     .ai-eye-group {
       transform-box: fill-box;
       transform-origin: center;
-      transition: transform 0.35s ease;
     }
 
     .ai-pupil {
-      transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: transform 0.25s ease-out;
       will-change: transform;
     }
 
@@ -352,7 +341,7 @@
     .ai-eye-open {
       transform-box: fill-box;
       transform-origin: center;
-      transition: transform 0.12s ease, opacity 0.16s ease;
+      transition: transform 0.1s ease, opacity 0.15s ease;
     }
 
     .ai-eye-happy {
@@ -360,7 +349,7 @@
       transform-box: fill-box;
       transform-origin: center;
       transform: scale(0.85);
-      transition: opacity 0.18s ease, transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: opacity 0.16s ease, transform 0.2s ease;
     }
 
     .ai-character.is-happy-eyes .ai-eye-open {
@@ -374,7 +363,7 @@
     }
 
     .ai-cheek {
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      transition: opacity 0.25s ease, transform 0.25s ease;
       transform-box: fill-box;
       transform-origin: center;
     }
@@ -384,13 +373,12 @@
       transform: scale(1.2);
     }
 
-    /* Bong bóng trò chuyện nhỏ trên đầu AI */
     .ai-mini-badge {
       position: absolute;
       top: -12px;
       left: 50%;
       transform: translateX(-50%) translateY(6px) scale(0.85);
-      background: rgba(255, 255, 255, 0.95);
+      background: #ffffff;
       border: 1.5px solid rgba(229, 132, 164, 0.55);
       color: var(--text-wine);
       font-size: 13px;
@@ -400,8 +388,8 @@
       white-space: nowrap;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.26s ease, transform 0.26s ease;
-      box-shadow: 0 6px 16px rgba(145, 52, 88, 0.15);
+      transition: opacity 0.24s ease, transform 0.24s ease;
+      box-shadow: 0 4px 12px rgba(145, 52, 88, 0.12);
     }
 
     .ai-character.show-badge .ai-mini-badge {
@@ -410,7 +398,7 @@
     }
 
     /* ==========================================================================
-       5. BỐ CỤC CHÍNH: BỨC THƯ TÌNH TRUNG TÂM & CÂY TÌNH YÊU BÊN CẠNH
+       5. BỐ CỤC CHÍNH: BỨC THƯ TÌNH TRUNG TÂM & CÂY TÌNH YÊU 3D BÊN CẠNH
        ========================================================================== */
     .story-stage-wrapper {
       max-width: 1060px;
@@ -421,7 +409,7 @@
       opacity: 0;
       visibility: hidden;
       transform: translateY(12px);
-      transition: opacity 0.65s ease, visibility 0.65s ease, transform 0.65s ease;
+      transition: opacity 0.6s ease, visibility 0.6s ease, transform 0.6s ease;
     }
 
     .story-stage-wrapper.is-active {
@@ -432,9 +420,9 @@
 
     .story-grid {
       display: grid;
-      grid-template-columns: 1.18fr 0.82fr;
+      grid-template-columns: 1.15fr 0.85fr;
       gap: 28px;
-      align-items: center;
+      align-items: stretch;
     }
 
     /* ----------------------------------------------------------------------
@@ -446,23 +434,19 @@
       border-radius: 28px;
       padding: 26px 30px 24px;
       box-shadow: var(--letter-shadow);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
       position: relative;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      min-height: 430px; /* Giữ kích thước ổn định, không bị nhảy bố cục khi đổi câu */
-      transition: box-shadow 0.35s ease, border-color 0.35s ease;
+      min-height: 430px;
+      transition: border-color 0.35s ease;
     }
 
     .love-letter-card.is-climax-mode {
-      background: rgba(255, 252, 253, 0.94);
-      border-color: rgba(216, 59, 108, 0.48);
-      box-shadow: 0 20px 50px rgba(185, 50, 96, 0.18);
+      background: #fffcfd;
+      border-color: rgba(216, 59, 108, 0.5);
     }
 
-    /* Đầu thư: Tiêu đề "Gửi Thoa 💗" và cụm nút Nhạc / Tạm dừng / Bỏ qua */
     .letter-header {
       display: flex;
       align-items: center;
@@ -504,12 +488,11 @@
       padding: 6px 12px;
       border-radius: 999px;
       cursor: pointer;
-      transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+      transition: background 0.2s ease, transform 0.2s ease;
     }
 
     .ctrl-btn:hover:not(:disabled) {
       background: rgba(236, 107, 150, 0.22);
-      border-color: rgba(216, 59, 108, 0.45);
       transform: translateY(-1px);
     }
 
@@ -518,7 +501,6 @@
       cursor: default;
     }
 
-    /* Vùng hiển thị câu chữ hiện tại (Fade-in -> Gõ chữ -> Giữ 3-5s -> Fade-out) */
     .letter-body-stage {
       flex: 1;
       display: flex;
@@ -536,8 +518,8 @@
       opacity: 0;
       transform: translateY(8px);
       transition:
-        opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+        opacity 0.5s ease,
+        transform 0.5s ease;
     }
 
     .sentence-scene.is-visible {
@@ -560,7 +542,6 @@
       position: relative;
     }
 
-    /* Làm nổi bật câu tỏ tình cuối cùng */
     .sentence-text.is-climax-text {
       font-family: var(--font-display);
       font-size: clamp(1.16rem, 3.1vw, 1.34rem);
@@ -586,7 +567,7 @@
       padding-left: 4px;
       opacity: 0;
       transform: translateY(5px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
+      transition: opacity 0.45s ease, transform 0.45s ease;
       display: none;
     }
 
@@ -599,21 +580,20 @@
       transform: translateY(0);
     }
 
-    /* Khung hiển thị ảnh GIF tương ứng với câu */
     .gif-stage-box {
       align-self: center;
       width: 100%;
       max-width: 215px;
       border-radius: 16px;
       overflow: hidden;
-      background: rgba(255, 240, 245, 0.85);
+      background: #fff3f7;
       border: 1.5px solid rgba(229, 132, 164, 0.35);
-      box-shadow: 0 8px 22px rgba(145, 52, 88, 0.12);
+      box-shadow: 0 6px 18px rgba(145, 52, 88, 0.1);
       opacity: 0;
-      transform: scale(0.93) translateY(6px);
+      transform: scale(0.94) translateY(6px);
       transition:
-        opacity 0.48s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.48s cubic-bezier(0.22, 1, 0.36, 1);
+        opacity 0.45s ease,
+        transform 0.45s ease;
       display: none;
     }
 
@@ -633,7 +613,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(253, 238, 243, 0.9);
+      background: #fdeef3;
     }
 
     .active-story-gif {
@@ -664,7 +644,6 @@
       display: flex;
     }
 
-    /* Chế độ xem lại toàn bộ 6 câu thư tình ở màn hình cuối */
     .full-letter-review {
       display: none;
       flex-direction: column;
@@ -678,13 +657,13 @@
 
     .full-letter-review.is-open {
       display: flex;
-      animation: messageFadeIn 0.4s ease forwards;
+      animation: messageFadeIn 0.35s ease forwards;
     }
 
     .review-item {
       padding: 8px 12px;
       border-radius: 12px;
-      background: rgba(255, 238, 244, 0.65);
+      background: rgba(255, 238, 244, 0.75);
       border: 1px solid rgba(229, 132, 164, 0.22);
     }
 
@@ -714,7 +693,6 @@
       background: rgba(216, 59, 108, 0.18);
     }
 
-    /* Chân bức thư: Chấm tiến trình & đường nét trái tim trang trí */
     .letter-footer {
       margin-top: 18px;
       padding-top: 12px;
@@ -755,84 +733,35 @@
     }
 
     /* ----------------------------------------------------------------------
-       7. CÂY TÌNH YÊU LỚN DẦN THEO TỪNG CÂU (GROWING LOVE TREE SVG)
+       7. CÂY TÌNH YÊU 3D (SIÊU MƯỢT 60FPS, XOAY QUA LẠI, LÁ TÌNH YÊU RƠI)
        ---------------------------------------------------------------------- */
     .love-tree-card {
-      background: rgba(255, 251, 253, 0.65);
-      border: 1.5px solid rgba(229, 132, 164, 0.3);
+      background: radial-gradient(circle at 50% 42%, rgba(255, 253, 254, 0.92) 0%, rgba(255, 240, 246, 0.76) 100%);
+      border: 1.5px solid rgba(229, 132, 164, 0.34);
       border-radius: 28px;
-      padding: 18px 16px 14px;
-      box-shadow: 0 14px 36px rgba(145, 52, 88, 0.08);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      padding: 0;
+      box-shadow: 0 12px 30px rgba(145, 52, 88, 0.08);
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
       position: relative;
-      min-height: 410px;
+      min-height: 430px;
+      overflow: hidden;
+      user-select: none;
+      contain: layout paint;
     }
 
-    .tree-stage-caption {
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text-rose-brown);
-      background: rgba(255, 235, 242, 0.85);
-      border: 1px solid rgba(229, 132, 164, 0.35);
-      padding: 4px 14px;
-      border-radius: 999px;
-      margin-top: 6px;
-      transition: all 0.3s ease;
-    }
-
-    .love-tree-svg {
+    .love-tree-3d-canvas {
       width: 100%;
-      max-width: 320px;
-      height: auto;
-      max-height: 350px;
-      overflow: visible;
+      height: 100%;
+      min-height: 430px;
+      display: block;
+      cursor: grab;
+      touch-action: pan-y;
     }
 
-    /* Hiệu ứng vẽ nhánh cây mượt mà bằng stroke-dasharray */
-    .tree-branch-path {
-      fill: none;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      stroke-dasharray: 420;
-      stroke-dashoffset: 420;
-      transition: stroke-dashoffset 1.35s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    .tree-branch-path.is-grown {
-      stroke-dashoffset: 0;
-    }
-
-    /* Các cụm mầm, lá hồng, nụ tim và tán cây trái tim */
-    .tree-bloom-group {
-      opacity: 0;
-      transform: scale(0.2);
-      transform-box: fill-box;
-      transform-origin: center bottom;
-      transition:
-        opacity 0.75s ease,
-        transform 0.85s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .tree-bloom-group.is-grown {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    /* Hiệu ứng đung đưa nhẹ khi cây tình yêu đã hoàn chỉnh */
-    .love-tree-svg.is-breezing .tree-canopy-sway {
-      animation: canopyGentleSway 4.2s ease-in-out infinite;
-      transform-box: fill-box;
-      transform-origin: center bottom;
-    }
-
-    @keyframes canopyGentleSway {
-      0%, 100% { transform: rotate(0deg); }
-      50% { transform: rotate(1.8deg); }
+    .love-tree-3d-canvas:active {
+      cursor: grabbing;
     }
 
     /* ==========================================================================
@@ -842,7 +771,7 @@
       margin-top: 26px;
       opacity: 0;
       transform: translateY(16px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
+      transition: opacity 0.6s ease, transform 0.6s ease;
       display: none;
     }
 
@@ -856,12 +785,10 @@
     }
 
     .interaction-card {
-      background: rgba(255, 251, 253, 0.9);
+      background: rgba(255, 251, 253, 0.95);
       border: 1.5px solid rgba(229, 132, 164, 0.38);
       border-radius: 26px;
       padding: 24px;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
       box-shadow: var(--letter-shadow);
     }
 
@@ -890,14 +817,12 @@
       border-radius: 999px;
       border: none;
       cursor: pointer;
-      box-shadow: 0 8px 22px rgba(216, 59, 108, 0.3);
-      transition: transform 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease;
+      box-shadow: 0 8px 20px rgba(216, 59, 108, 0.28);
+      transition: transform 0.2s ease;
     }
 
     .send-heart-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 11px 26px rgba(216, 59, 108, 0.4);
-      filter: brightness(1.03);
     }
 
     .send-heart-btn:active {
@@ -925,7 +850,7 @@
     .sent-message-item {
       align-self: flex-end;
       max-width: 88%;
-      background: linear-gradient(135deg, rgba(255, 214, 228, 0.75) 0%, rgba(255, 232, 240, 0.9) 100%);
+      background: linear-gradient(135deg, rgba(255, 214, 228, 0.8) 0%, rgba(255, 232, 240, 0.95) 100%);
       border: 1px solid rgba(216, 59, 108, 0.32);
       color: var(--text-wine);
       padding: 10px 16px;
@@ -934,17 +859,17 @@
       font-weight: 500;
       line-height: 1.5;
       word-break: break-word;
-      animation: messageFadeIn 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      animation: messageFadeIn 0.3s ease forwards;
     }
 
     @keyframes messageFadeIn {
       from {
         opacity: 0;
-        transform: translateY(8px) scale(0.97);
+        transform: translateY(6px);
       }
       to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translateY(0);
       }
     }
 
@@ -964,12 +889,11 @@
       border: 1.5px solid rgba(229, 132, 164, 0.45);
       border-radius: 999px;
       padding: 6px 6px 6px 18px;
-      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+      transition: border-color 0.2s ease;
     }
 
     .chat-input-bar:focus-within {
       border-color: var(--accent-ruby);
-      box-shadow: 0 0 0 3px rgba(216, 59, 108, 0.14);
     }
 
     .chat-input {
@@ -1041,16 +965,13 @@
         gap: 18px;
       }
 
-      /* Đưa cây tình yêu lên trên bức thư với kích thước gọn gàng trên màn hình nhỏ */
       .love-tree-card {
         order: -1;
-        min-height: 230px;
-        padding: 12px 14px 10px;
+        min-height: 285px;
       }
 
-      .love-tree-svg {
-        max-width: 200px;
-        max-height: 195px;
+      .love-tree-3d-canvas {
+        min-height: 285px;
       }
 
       .love-letter-card {
@@ -1081,6 +1002,11 @@
       .gif-stage-box {
         max-width: 190px;
       }
+
+      .love-tree-card,
+      .love-tree-3d-canvas {
+        min-height: 260px;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1100,7 +1026,7 @@
   <!-- NHẠC NỀN PHÁT KHI NHẤN TRÁI TIM (Đặt file nhạc tại style/nhac.mp3) -->
   <audio id="bgMusic" src="style/nhac.mp3" loop preload="auto"></audio>
 
-  <!-- LỚP CÁNH HOA TÌNH YÊU & TRÁI TIM RƠI NHẸ (GIỚI HẠN SỐ LƯỢNG TỰ ĐỘNG) -->
+  <!-- LỚP CÁNH HOA TÌNH YÊU & TRÁI TIM RƠI NHẸ TOÀN MÀN HÌNH -->
   <div class="falling-layer" id="fallingLayer" aria-hidden="true"></div>
 
   <!-- ========================================================================
@@ -1161,21 +1087,17 @@
               </linearGradient>
             </defs>
 
-            <!-- Bóng chân dịu dưới nhân vật -->
-            <ellipse cx="80" cy="144" rx="36" ry="6" fill="rgba(130, 42, 74, 0.18)" />
+            <ellipse cx="80" cy="144" rx="36" ry="6" fill="rgba(130, 42, 74, 0.16)" />
 
-            <!-- Ăng-ten trái tim nhỏ trên đỉnh đầu -->
             <path d="M80 34C80 26 83 21 86 18" stroke="#ec6b96" stroke-width="3.5" stroke-linecap="round" />
             <path
               d="M89 19.5C89 19.5 82.5 15.2 82.5 11.2C82.5 9.1 84.2 7.5 86.2 7.5C87.5 7.5 88.5 8.2 89 9.1C89.5 8.2 90.5 7.5 91.8 7.5C93.8 7.5 95.5 9.1 95.5 11.2C95.5 15.2 89 19.5 89 19.5Z"
               fill="#d83b6c"
             />
 
-            <!-- Tai mềm 2 bên -->
             <ellipse cx="38" cy="54" rx="13" ry="18" transform="rotate(-24 38 54)" fill="url(#aiEarGrad)" />
             <ellipse cx="122" cy="54" rx="13" ry="18" transform="rotate(24 122 54)" fill="url(#aiEarGrad)" />
 
-            <!-- Thân hình sinh vật mềm mại -->
             <path
               d="M80 32C46.5 32 25 55.5 25 88.5C25 118.5 45.5 135 80 135C114.5 135 135 118.5 135 88.5C135 55.5 113.5 32 80 32Z"
               fill="url(#aiBodyGrad)"
@@ -1183,11 +1105,10 @@
               stroke-width="2.5"
             />
 
-            <!-- Hai má hồng -->
             <ellipse class="ai-cheek" cx="44" cy="95" rx="9.5" ry="5.5" fill="#ff85a6" opacity="0.68" />
             <ellipse class="ai-cheek" cx="116" cy="95" rx="9.5" ry="5.5" fill="#ff85a6" opacity="0.68" />
 
-            <!-- MẮT TRÁI (Chuyển động độc lập) -->
+            <!-- MẮT TRÁI -->
             <g class="ai-eye-group" id="aiLeftEyeGroup">
               <g class="ai-eye-open">
                 <ellipse cx="58" cy="82" rx="12.5" ry="14" fill="#3b1224" />
@@ -1207,7 +1128,7 @@
               />
             </g>
 
-            <!-- MẮT PHẢI (Chuyển động độc lập) -->
+            <!-- MẮT PHẢI -->
             <g class="ai-eye-group" id="aiRightEyeGroup">
               <g class="ai-eye-open">
                 <ellipse cx="102" cy="82" rx="12.5" ry="14" fill="#3b1224" />
@@ -1227,7 +1148,6 @@
               />
             </g>
 
-            <!-- Miệng nhỏ đáng yêu -->
             <path
               id="aiMouth"
               d="M74.5 94.5C76.5 97.5 83.5 97.5 85.5 94.5"
@@ -1237,7 +1157,6 @@
               fill="none"
             />
 
-            <!-- Hai tay nhỏ xinh -->
             <ellipse cx="27" cy="98" rx="7.5" ry="5.5" transform="rotate(18 27 98)" fill="#fff2f6" stroke="#eca4be" stroke-width="2" />
             <ellipse cx="133" cy="98" rx="7.5" ry="5.5" transform="rotate(-18 133 98)" fill="#fff2f6" stroke="#eca4be" stroke-width="2" />
           </svg>
@@ -1247,7 +1166,7 @@
   </div>
 
   <!-- ========================================================================
-       SÂN KHẤU KỂ CHUYỆN TÌNH YÊU: BỨC THƯ TÌNH & CÂY TÌNH YÊU
+       SÂN KHẤU KỂ CHUYỆN TÌNH YÊU: BỨC THƯ TÌNH & CÂY TÌNH YÊU 3D
        ======================================================================== -->
   <main class="story-stage-wrapper" id="storyStageWrapper">
     <div class="story-grid">
@@ -1279,7 +1198,9 @@
         <!-- Vùng nội dung từng câu xuất hiện rồi biến mất -->
         <div class="letter-body-stage" id="letterBodyStage">
           <div class="sentence-scene" id="sentenceScene">
-            <p class="sentence-text" id="activeSentenceText" aria-live="polite"></p>
+            <p class="sentence-text" id="activeSentenceText" aria-live="polite">
+              <span id="lockedTextSpan"></span><span class="decode-char" id="decodeCharSpan"></span>
+            </p>
             <p class="climax-subtext" id="climaxSubtext">
               Không cần trả lời ngay đâu nè. Thịnh chỉ muốn nói thật lòng mình thôi ^^
             </p>
@@ -1303,7 +1224,7 @@
 
           <!-- Nút và danh sách xem lại toàn bộ bức thư sau khi câu cuối xuất hiện -->
           <button type="button" class="toggle-review-btn" id="toggleReviewBtn">
-            <span>📖 Xem lại toàn bộ lời nhắn từ đầu</span>
+            <span>Xem lại toàn bộ lời nhắn từ đầu</span>
           </button>
           <div class="full-letter-review" id="fullLetterReview"></div>
         </div>
@@ -1319,7 +1240,6 @@
             <span class="progress-dot" data-step="5"></span>
           </div>
 
-          <!-- Đường nét vẽ trái tim nhỏ trang trí cuối thư -->
           <svg class="flourish-svg" viewBox="0 0 200 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M12 12H82" stroke="#e584a4" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="3 3" />
             <path
@@ -1331,181 +1251,9 @@
         </footer>
       </section>
 
-      <!-- CÂY TÌNH YÊU LỚN DẦN THEO TỪNG CÂU (BÊN CẠNH THƯ TÌNH) -->
-      <aside class="love-tree-card" aria-label="Cây tình yêu lớn dần">
-        <svg class="love-tree-svg" id="loveTreeSvg" viewBox="0 0 300 340" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="trunkGrad" x1="150" y1="310" x2="150" y2="110" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#6e354b" />
-              <stop offset="100%" stop-color="#9c4c6a" />
-            </linearGradient>
-            <linearGradient id="canopyBackGrad" x1="70" y1="50" x2="230" y2="220" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#ffd1e0" stop-opacity="0.88" />
-              <stop offset="100%" stop-color="#f79cbb" stop-opacity="0.75" />
-            </linearGradient>
-            <linearGradient id="canopyFrontGrad" x1="90" y1="65" x2="210" y2="210" gradientUnits="userSpaceOnUse">
-              <stop offset="0%" stop-color="#ff9eb5" stop-opacity="0.85" />
-              <stop offset="100%" stop-color="#ec6b96" stop-opacity="0.78" />
-            </linearGradient>
-            <!-- Hình mẫu chiếc lá hồng và trái tim trang trí trên cây -->
-            <g id="pinkLeaf">
-              <path d="M0,0 C-5,-8 -4,-16 0,-22 C4,-16 5,-8 0,0 Z" fill="#f27da4" />
-            </g>
-            <g id="softLeaf">
-              <path d="M0,0 C-4,-7 -3,-14 0,-18 C3,-14 4,-7 0,0 Z" fill="#ffabc4" />
-            </g>
-            <g id="treeHeart">
-              <path
-                d="M0,4 C0,4 -9,-2 -9,-7.5 C-9,-10.5 -6.5,-12.5 -4,-12.5 C-2,-12.5 -0.6,-11.5 0,-10 C0.6,-11.5 2,-12.5 4,-12.5 C6.5,-12.5 9,-10.5 9,-7.5 C9,-2 0,4 0,4 Z"
-                fill="#d83b6c"
-              />
-            </g>
-            <g id="treeHeartLight">
-              <path
-                d="M0,3 C0,3 -7,-1.5 -7,-5.8 C-7,-8.2 -5,-9.8 -3,-9.8 C-1.5,-9.8 -0.4,-9 0,-7.8 C0.4,-9 1.5,-9.8 3,-9.8 C5,-9.8 7,-8.2 7,-5.8 C7,-1.5 0,3 0,3 Z"
-                fill="#ff7597"
-              />
-            </g>
-          </defs>
-
-          <!-- Mô đất hồng dịu dưới gốc cây -->
-          <ellipse cx="150" cy="312" rx="68" ry="12" fill="#f3b6cb" opacity="0.7" />
-          <ellipse cx="150" cy="312" rx="44" ry="7" fill="#e584a4" opacity="0.65" />
-
-          <g class="tree-canopy-sway">
-            <!-- Tán cây nền hình trái tim mềm mại (Giai đoạn 5 & 6) -->
-            <g class="tree-bloom-group" id="treeStage5Canopy">
-              <path
-                d="M150 228 C150 228 52 168 52 104 C52 68 80 44 112 44 C131 44 143 54 150 67 C157 54 169 44 188 44 C220 44 248 68 248 104 C248 168 150 228 150 228 Z"
-                fill="url(#canopyBackGrad)"
-              />
-              <path
-                d="M150 212 C150 212 72 162 72 110 C72 82 94 62 120 62 C135 62 145 70 150 80 C155 70 165 62 180 62 C206 62 228 82 228 110 C228 162 150 212 150 212 Z"
-                fill="url(#canopyFrontGrad)"
-              />
-            </g>
-
-            <!-- GIAI ĐOẠN 0: Mầm cây nhỏ ban đầu -->
-            <g class="tree-bloom-group is-grown" id="treeStage0Sprout">
-              <path d="M150 312 Q150 292 150 282" stroke="#7c3a53" stroke-width="4.5" stroke-linecap="round" fill="none" />
-              <use href="#pinkLeaf" transform="translate(150, 284) rotate(-38)" />
-              <use href="#softLeaf" transform="translate(150, 284) rotate(36)" />
-            </g>
-
-            <!-- GIAI ĐOẠN 1: Thân non vươn lên khi câu 1 bắt đầu -->
-            <path
-              class="tree-branch-path"
-              id="treeStage1Stem"
-              d="M150 312 C149 282 152 252 150 222"
-              stroke="url(#trunkGrad)"
-              stroke-width="9"
-            />
-            <g class="tree-bloom-group" id="treeStage1Leaves">
-              <use href="#pinkLeaf" transform="translate(148, 245) rotate(-48) scale(1.1)" />
-              <use href="#softLeaf" transform="translate(152, 232) rotate(45) scale(1.1)" />
-              <use href="#treeHeartLight" transform="translate(150, 218) scale(0.9)" />
-            </g>
-
-            <!-- GIAI ĐOẠN 2: Thân chính cao lên & mọc 2 cành lớn -->
-            <path
-              class="tree-branch-path"
-              id="treeStage2Trunk"
-              d="M150 226 C148 195 151 168 150 138"
-              stroke="url(#trunkGrad)"
-              stroke-width="7.5"
-            />
-            <path
-              class="tree-branch-path"
-              id="treeStage2BranchL"
-              d="M150 215 C132 198 110 185 92 162"
-              stroke="url(#trunkGrad)"
-              stroke-width="5.5"
-            />
-            <path
-              class="tree-branch-path"
-              id="treeStage2BranchR"
-              d="M150 202 C168 185 190 172 208 148"
-              stroke="url(#trunkGrad)"
-              stroke-width="5.5"
-            />
-
-            <!-- GIAI ĐOẠN 3: Các nhánh phụ vươn rộng + lá hồng & nụ tim -->
-            <path
-              class="tree-branch-path"
-              id="treeStage3SubL"
-              d="M114 182 C102 162 88 142 78 120"
-              stroke="#8f4360"
-              stroke-width="4"
-            />
-            <path
-              class="tree-branch-path"
-              id="treeStage3SubR"
-              d="M186 168 C198 148 212 130 222 108"
-              stroke="#8f4360"
-              stroke-width="4"
-            />
-            <path
-              class="tree-branch-path"
-              id="treeStage3TopL"
-              d="M150 156 C135 134 118 114 106 92"
-              stroke="#8f4360"
-              stroke-width="4.2"
-            />
-            <path
-              class="tree-branch-path"
-              id="treeStage3TopR"
-              d="M150 150 C165 128 182 110 194 88"
-              stroke="#8f4360"
-              stroke-width="4.2"
-            />
-            <g class="tree-bloom-group" id="treeStage3Blooms">
-              <use href="#pinkLeaf" transform="translate(92, 162) rotate(-55) scale(1.15)" />
-              <use href="#softLeaf" transform="translate(112, 178) rotate(25) scale(1.1)" />
-              <use href="#pinkLeaf" transform="translate(208, 148) rotate(52) scale(1.15)" />
-              <use href="#softLeaf" transform="translate(184, 165) rotate(-28) scale(1.1)" />
-              <use href="#treeHeartLight" transform="translate(90, 156) rotate(-15)" />
-              <use href="#treeHeartLight" transform="translate(210, 142) rotate(18)" />
-              <use href="#treeHeart" transform="translate(150, 134) scale(0.95)" />
-            </g>
-
-            <!-- GIAI ĐOẠN 4: Nhiều lá hồng và trái tim nhỏ nở rộ trên các nhánh -->
-            <g class="tree-bloom-group" id="treeStage4Blooms">
-              <use href="#pinkLeaf" transform="translate(78, 120) rotate(-40) scale(1.2)" />
-              <use href="#softLeaf" transform="translate(106, 92) rotate(-20) scale(1.25)" />
-              <use href="#pinkLeaf" transform="translate(194, 88) rotate(25) scale(1.25)" />
-              <use href="#softLeaf" transform="translate(222, 108) rotate(45) scale(1.2)" />
-              <use href="#treeHeart" transform="translate(76, 114) rotate(-18)" />
-              <use href="#treeHeartLight" transform="translate(124, 122) rotate(12) scale(1.1)" />
-              <use href="#treeHeart" transform="translate(105, 86) rotate(-10)" />
-              <use href="#treeHeart" transform="translate(195, 82) rotate(12)" />
-              <use href="#treeHeartLight" transform="translate(176, 118) rotate(-14) scale(1.1)" />
-              <use href="#treeHeart" transform="translate(224, 102) rotate(20)" />
-            </g>
-
-            <!-- GIAI ĐOẠN 6: Hoa trái tim hoàn chỉnh rực rỡ khắp tán cây -->
-            <g class="tree-bloom-group" id="treeStage6FullHearts">
-              <use href="#treeHeart" transform="translate(150, 74) scale(1.35)" />
-              <use href="#treeHeart" transform="translate(112, 68) rotate(-14) scale(1.15)" />
-              <use href="#treeHeart" transform="translate(188, 68) rotate(14) scale(1.15)" />
-              <use href="#treeHeartLight" transform="translate(82, 92) rotate(-22) scale(1.2)" />
-              <use href="#treeHeartLight" transform="translate(218, 92) rotate(22) scale(1.2)" />
-              <use href="#treeHeart" transform="translate(68, 138) rotate(-25) scale(1.1)" />
-              <use href="#treeHeart" transform="translate(232, 138) rotate(25) scale(1.1)" />
-              <use href="#treeHeartLight" transform="translate(132, 102) rotate(-8) scale(1.15)" />
-              <use href="#treeHeartLight" transform="translate(168, 102) rotate(8) scale(1.15)" />
-              <use href="#treeHeart" transform="translate(115, 148) rotate(-12) scale(1.05)" />
-              <use href="#treeHeart" transform="translate(185, 148) rotate(12) scale(1.05)" />
-              <use href="#treeHeartLight" transform="translate(150, 172) scale(1.15)" />
-              <!-- Một vài trái tim nhỏ lơ lửng quanh tán cây -->
-              <use href="#treeHeartLight" transform="translate(52, 84) rotate(-28) scale(0.85)" />
-              <use href="#treeHeartLight" transform="translate(248, 84) rotate(28) scale(0.85)" />
-            </g>
-          </g>
-        </svg>
-
-        <div class="tree-stage-caption" id="treeStageCaption">
-          🌱 Mầm cây tình yêu bắt đầu nhú lên...
-        </div>
+      <!-- CÂY TÌNH YÊU 3D (HIỆN DẦN LÊN, XOAY QUA LẠI ĐƯỢC, LÁ TÌNH YÊU RƠI XUỐNG, KHÔNG CÓ CHỮ DƯỚI CÂY) -->
+      <aside class="love-tree-card" id="loveTreeCard" aria-label="Cây tình yêu 3D">
+        <canvas class="love-tree-3d-canvas" id="loveTree3DCanvas"></canvas>
       </aside>
     </div>
 
@@ -1560,29 +1308,27 @@
   </main>
 
   <!-- ========================================================================
-       JAVASCRIPT ĐIỀU PHỐI CÂU CHUYỆN TÌNH YÊU, AI, CÂY TÌNH YÊU, CÁNH HOA & NHẠC
+       JAVASCRIPT ĐÃ TỐI ƯU HÓA HIỆU NĂNG 60FPS
        ======================================================================== -->
   <script>
     (function () {
       'use strict';
 
       /* ----------------------------------------------------------------------
-         1. CẤU HÌNH THỜI GIAN TẬP TRUNG (DỄ DÀNG CHỈNH SỬA TẠI MỘT NƠI)
+         1. CẤU HÌNH THỜI GIAN TẬP TRUNG
          ---------------------------------------------------------------------- */
       const CONFIG = {
         charTypeSpeedMs: 32,        // Tốc độ gõ từng ký tự thư tình (ms)
         sentenceReadHoldMs: 3800,   // Thời gian giữ câu trên màn hình để người xem đọc (3–5 giây)
-        sentenceFadeInMs: 550,      // Thời gian fade-in câu mới
-        sentenceFadeOutMs: 550,     // Thời gian fade-out câu cũ trước khi câu mới xuất hiện
-        betweenSentenceGapMs: 260,  // Khoảng nghỉ ngắn sau khi câu cũ biến mất hoàn toàn
-        fallingSpawnIntervalMs: 950,// Chu kỳ tạo cánh hoa / trái tim rơi nhẹ
-        maxFallingItems: 14,        // Giới hạn số phần tử rơi tối đa trên màn hình
+        sentenceFadeInMs: 500,      // Thời gian fade-in câu mới
+        sentenceFadeOutMs: 500,     // Thời gian fade-out câu cũ trước khi câu mới xuất hiện
+        betweenSentenceGapMs: 240,  // Khoảng nghỉ ngắn sau khi câu cũ biến mất hoàn toàn
+        fallingSpawnIntervalMs: 1200,// Chu kỳ tạo cánh hoa rơi nhẹ ngoài nền
+        maxFallingItems: 9,         // Giới hạn số phần tử rơi ngoài nền để ưu tiên 60fps tuyệt đối
         targetMusicVolume: 0.75     // Âm lượng nhạc nền mặc định (0.0 -> 1.0)
       };
 
-      // Chuỗi ký tự trang trí giải mã ngắn gọn trước khi hiện chữ
       const hackerLetters = "01!@#$%^&*()_+-=[]{}|;:,.<>?/";
-
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       /* ----------------------------------------------------------------------
@@ -1594,7 +1340,6 @@
           gifUrl: "https://i.pinimg.com/originals/56/80/90/5680904ede54bea21d02450affebfc4f.gif",
           gifFallback: "Một chút ngập ngừng gửi đến Thoa 🌸",
           treeStage: 1,
-          treeCaption: "Câu 1/6 — Mầm nhỏ bắt đầu vươn lên...",
           aiVisitLetter: false,
           aiBadge: "Thoa ơiii ^^"
         },
@@ -1603,7 +1348,6 @@
           gifUrl: "https://i.pinimg.com/originals/b7/c6/4a/b7c64aca651271c52087f58276bd1de1.gif",
           gifFallback: "Nói chuyện với Thoa lúc nào cũng vui hết 😊",
           treeStage: 2,
-          treeCaption: "Câu 2/6 — Thân cây cao thêm và đâm nhánh mới...",
           aiVisitLetter: true,
           aiBadge: "Vui lắm luôn ^^"
         },
@@ -1612,7 +1356,6 @@
           gifUrl: null,
           gifFallback: "",
           treeStage: 3,
-          treeCaption: "🌸 Câu 3/6 — Những chiếc lá hồng và nụ tim bắt đầu hé nở...",
           aiVisitLetter: false,
           aiBadge: "💗"
         },
@@ -1621,7 +1364,6 @@
           gifUrl: "https://i.pinimg.com/originals/3f/4e/d3/3f4ed3cb1539cb42dc93b78020a3ef55.gif",
           gifFallback: "Cảm tình cứ lớn dần lên từng chút một 💓",
           treeStage: 4,
-          treeCaption: "Câu 4/6 — Cành lá sum suê cùng thật nhiều trái tim nhỏ...",
           aiVisitLetter: true,
           aiBadge: "Ngại ghê ^^"
         },
@@ -1630,7 +1372,6 @@
           gifUrl: null,
           gifFallback: "",
           treeStage: 5,
-          treeCaption: "Câu 5/6 — Tán cây kết thành hình trái tim mềm mại...",
           aiVisitLetter: false,
           aiBadge: "✨"
         },
@@ -1639,7 +1380,6 @@
           gifUrl: "https://i.pinimg.com/originals/4e/89/d3/4e89d3e4ec4b1f59b1664e880a875c65.gif",
           gifFallback: "Mong có thêm thật nhiều kỷ niệm nhỏ cùng Thoa ❤️",
           treeStage: 6,
-          treeCaption: "💖 Cây tình yêu đã nở rộ trọn vẹn!",
           isClimax: true,
           aiVisitLetter: true,
           aiBadge: "Yêu thương ❤️"
@@ -1677,6 +1417,8 @@
 
       const sentenceScene = document.getElementById('sentenceScene');
       const activeSentenceText = document.getElementById('activeSentenceText');
+      const lockedTextSpan = document.getElementById('lockedTextSpan');
+      const decodeCharSpan = document.getElementById('decodeCharSpan');
       const climaxSubtext = document.getElementById('climaxSubtext');
       const gifStageBox = document.getElementById('gifStageBox');
       const activeStoryGif = document.getElementById('activeStoryGif');
@@ -1686,8 +1428,7 @@
       const fullLetterReview = document.getElementById('fullLetterReview');
       const progressDots = document.querySelectorAll('.progress-dot');
 
-      const loveTreeSvg = document.getElementById('loveTreeSvg');
-      const treeStageCaption = document.getElementById('treeStageCaption');
+      const loveTree3DCanvas = document.getElementById('loveTree3DCanvas');
 
       const interactionSection = document.getElementById('interactionSection');
       const sendHeartMainBtn = document.getElementById('sendHeartMainBtn');
@@ -1764,21 +1505,19 @@
       let isPaused = false;
       let skipRequested = false;
       let isStoryFinished = false;
-      let aiPositionMode = 'center'; // 'center' | 'corner' | 'near-letter'
+      let aiPositionMode = 'center';
       let activeFallingCount = 0;
       let fallingIntervalId = null;
       let mascotIdleTimer = null;
       let heartCount = 0;
       const activeWebAnimations = new Set();
 
-      // Chuẩn hóa viết hoa chữ cái đầu tiên của câu đúng ngữ pháp tiếng Việt
       function capitalizeVietnameseSentence(str) {
         if (!str) return '';
         const trimmed = str.trim();
         return trimmed.charAt(0).toLocaleUpperCase('vi-VN') + trimmed.slice(1);
       }
 
-      // Tiền tải 4 ảnh GIF để hạn chế tối đa trễ mạng khi câu chuyện đang chạy
       STORY_SENTENCES.forEach((item) => {
         if (item.gifUrl) {
           const preloadImg = new Image();
@@ -1786,14 +1525,12 @@
         }
       });
 
-      // Xử lý lỗi nếu ảnh GIF không tải được
       activeStoryGif.addEventListener('error', function () {
         if (gifStageBox.classList.contains('is-mounted')) {
           gifStageBox.classList.add('has-error');
         }
       });
 
-      // Hàm chờ thông minh: Tự động dừng đếm khi isPaused = true và kết thúc sớm nếu người dùng bấm "Câu tiếp theo"
       function smartWait(ms, allowSkip = true) {
         const targetMs = prefersReducedMotion ? Math.min(ms, 120) : ms;
         return new Promise((resolve) => {
@@ -1816,12 +1553,10 @@
         });
       }
 
-      // Chờ không bị ngắt bởi nút Skip (dùng cho hiệu ứng fade-out hoàn toàn để không bao giờ chồng 2 câu)
       function unskippableWait(ms) {
         return smartWait(ms, false);
       }
 
-      // Xử lý nút Tạm dừng / Tiếp tục
       pauseResumeBtn.addEventListener('click', function () {
         isPaused = !isPaused;
         document.body.classList.toggle('is-paused', isPaused);
@@ -1834,7 +1569,7 @@
             try { anim.pause(); } catch (e) {}
           });
         } else {
-          pauseResumeIcon.textContent = '';
+          pauseResumeIcon.textContent = '⏸';
           pauseResumeText.textContent = 'Tạm dừng';
           activeWebAnimations.forEach((anim) => {
             try { anim.play(); } catch (e) {}
@@ -1842,50 +1577,667 @@
         }
       });
 
-      // Xử lý nút Bỏ qua sang câu tiếp theo
       skipSentenceBtn.addEventListener('click', function () {
         if (isStoryFinished) return;
         if (isPaused) {
-          // Nếu đang tạm dừng mà bấm câu tiếp theo thì tự động tiếp tục để chuyển câu
           pauseResumeBtn.click();
         }
         skipRequested = true;
       });
 
-      /* ----------------------------------------------------------------------
-         6. ĐIỀU KHIỂN CÂY TÌNH YÊU LỚN DẦN THEO 6 GIAI ĐOẠN
-         ---------------------------------------------------------------------- */
-      function updateLoveTreeStage(stageNumber, captionText) {
-        if (captionText && treeStageCaption) {
-          treeStageCaption.textContent = captionText;
+      /* ======================================================================
+         6. ENGINE CÂY TÌNH YÊU 3D SIÊU MƯỢT (OFFSCREEN SPRITE CACHE + ZERO-GC)
+         ====================================================================== */
+      const LoveTree3DEngine = (function (canvas) {
+        if (!canvas) return { setStage: function () {}, start: function () {} };
+        const ctx = canvas.getContext('2d', { alpha: true });
+
+        let isRunning = false;
+        let rngSeed = 202608;
+        function seededRandom() {
+          rngSeed = (rngSeed * 1664525 + 1013904223) % 4294967296;
+          return rngSeed / 4294967296;
         }
 
-        if (stageNumber >= 1) {
-          document.getElementById('treeStage1Stem')?.classList.add('is-grown');
-          document.getElementById('treeStage1Leaves')?.classList.add('is-grown');
+        // Bảng màu lá tình yêu 3D
+        const LEAF_COLORS = [
+          '#d83b6c',
+          '#ec6b96',
+          '#ff85a8',
+          '#e45281',
+          '#f498b8',
+          '#ff6694',
+          '#c42858'
+        ];
+
+        // Tạo bộ nhớ đệm Sprite Lá Trái Tim 3D (Pre-rendered Offscreen Canvases)
+        // Giúp vẽ 160 lá 3D mỗi khung hình cực nhanh bằng GPU drawImage thay vì tính toán Bezier
+        const SPRITE_SIZE = 48;
+        const SPRITE_HALF = SPRITE_SIZE / 2;
+        const leafSprites = [];
+
+        function buildHeartSprites() {
+          for (let i = 0; i < LEAF_COLORS.length; i++) {
+            const off = document.createElement('canvas');
+            off.width = SPRITE_SIZE;
+            off.height = SPRITE_SIZE;
+            const octx = off.getContext('2d');
+
+            octx.translate(SPRITE_HALF, SPRITE_HALF);
+            const s = 18;
+
+            octx.beginPath();
+            octx.moveTo(0, s * 0.42);
+            octx.bezierCurveTo(-s * 0.92, -s * 0.16, -s * 0.95, -s * 0.92, 0, -s * 0.4);
+            octx.bezierCurveTo(s * 0.95, -s * 0.92, s * 0.92, -s * 0.16, 0, s * 0.42);
+            octx.closePath();
+
+            octx.fillStyle = LEAF_COLORS[i];
+            octx.fill();
+
+            octx.lineWidth = 1.4;
+            octx.strokeStyle = 'rgba(255, 255, 255, 0.35)';
+            octx.stroke();
+
+            // Điểm bắt sáng 3D trên cánh trái tim
+            octx.beginPath();
+            octx.arc(-s * 0.28, -s * 0.36, s * 0.14, 0, Math.PI * 2);
+            octx.fillStyle = 'rgba(255, 255, 255, 0.45)';
+            octx.fill();
+
+            leafSprites.push(off);
+          }
         }
-        if (stageNumber >= 2) {
-          document.getElementById('treeStage2Trunk')?.classList.add('is-grown');
-          document.getElementById('treeStage2BranchL')?.classList.add('is-grown');
-          document.getElementById('treeStage2BranchR')?.classList.add('is-grown');
+
+        const branchSegments = [];
+        const canopyLeaves = [];
+        const fallingLeaves = [];
+        const groundDecorLeaves = [];
+
+        // Mảng hàng đợi vẽ 3D được cấp phát sẵn để KHÔNG tạo rác bộ nhớ (Zero-GC)
+        const renderPool = [];
+        let renderCount = 0;
+
+        function getRenderNode() {
+          if (renderCount >= renderPool.length) {
+            renderPool.push({
+              type: 0, // 0: branch, 1: leaf
+              cz: 0,
+              sx0: 0, sy0: 0, r0: 0,
+              sx1: 0, sy1: 0, r1: 0,
+              sx: 0, sy: 0, size: 0,
+              scaleX: 1, rot: 0,
+              spriteIdx: 0, alpha: 1
+            });
+          }
+          return renderPool[renderCount++];
         }
-        if (stageNumber >= 3) {
-          document.getElementById('treeStage3SubL')?.classList.add('is-grown');
-          document.getElementById('treeStage3SubR')?.classList.add('is-grown');
-          document.getElementById('treeStage3TopL')?.classList.add('is-grown');
-          document.getElementById('treeStage3TopR')?.classList.add('is-grown');
-          document.getElementById('treeStage3Blooms')?.classList.add('is-grown');
+
+        let targetGrowthStage = 0.35;
+        let currentGrowthStage = 0.25;
+
+        // Trạng thái góc xoay 3D của cây
+        let userYaw = 0;
+        let autoSwayYaw = 0;
+        let cameraPitch = 0.16;
+        let yawVelocity = 0;
+        let isDragging = false;
+        let lastPointerX = 0;
+        let lastPointerY = 0;
+
+        function addCurvedBranch3D(p0, p1, p2, rStart, rEnd, growthStart, growthEnd, steps, spawnLeaves) {
+          let prevPt = p0;
+          for (let i = 1; i <= steps; i++) {
+            const t0 = (i - 1) / steps;
+            const t1 = i / steps;
+            const mt = 1 - t1;
+
+            const curPt = {
+              x: mt * mt * p0.x + 2 * mt * t1 * p1.x + t1 * t1 * p2.x,
+              y: mt * mt * p0.y + 2 * mt * t1 * p1.y + t1 * t1 * p2.y,
+              z: mt * mt * p0.z + 2 * mt * t1 * p1.z + t1 * t1 * p2.z
+            };
+
+            const segR0 = rStart + (rEnd - rStart) * t0;
+            const segR1 = rStart + (rEnd - rStart) * t1;
+            const segG0 = growthStart + (growthEnd - growthStart) * t0;
+            const segG1 = growthStart + (growthEnd - growthStart) * t1;
+
+            branchSegments.push({
+              p0: prevPt,
+              p1: curPt,
+              r0: segR0,
+              r1: segR1,
+              g0: segG0,
+              g1: segG1
+            });
+
+            if (spawnLeaves && i >= 2) {
+              const leafCountHere = i === steps ? 2 : 1;
+              for (let k = 0; k < leafCountHere; k++) {
+                const spread = i === steps ? 12 : 8;
+                const lx = curPt.x + (seededRandom() - 0.5) * spread;
+                const ly = curPt.y + (seededRandom() - 0.3) * spread;
+                const lz = curPt.z + (seededRandom() - 0.5) * spread;
+                addCanopyHeartLeaf(lx, ly, lz, segG1 + seededRandom() * 0.4, 11 + seededRandom() * 5);
+              }
+            }
+
+            prevPt = curPt;
+          }
         }
-        if (stageNumber >= 4) {
-          document.getElementById('treeStage4Blooms')?.classList.add('is-grown');
+
+        function addCanopyHeartLeaf(x, y, z, appearAt, size) {
+          const spriteIdx = Math.floor(seededRandom() * LEAF_COLORS.length);
+          const outwardAngle = Math.atan2(x, z);
+          canopyLeaves.push({
+            x: x,
+            y: y,
+            z: z,
+            appearAt: appearAt,
+            size: size,
+            spriteIdx: spriteIdx,
+            baseYaw: outwardAngle + (seededRandom() - 0.5) * 1.2,
+            baseRoll: (seededRandom() - 0.5) * 0.55,
+            swayPhase: seededRandom() * Math.PI * 2,
+            swaySpeed: 1.3 + seededRandom() * 1.2
+          });
         }
-        if (stageNumber >= 5) {
-          document.getElementById('treeStage5Canopy')?.classList.add('is-grown');
+
+        function getMoundHeightAt(x, z) {
+          const r2 = (x * x + z * z) / (84 * 84);
+          if (r2 >= 1) return -8;
+          return (1 - r2) * 10 - 6;
         }
-        if (stageNumber >= 6) {
-          document.getElementById('treeStage6FullHearts')?.classList.add('is-grown');
-          loveTreeSvg?.classList.add('is-breezing');
+
+        function build3DLoveTreeGeometry() {
+          // Mầm non ban đầu
+          addCanopyHeartLeaf(-7, 46, 5, 0.22, 10);
+          addCanopyHeartLeaf(7, 49, -4, 0.25, 10);
+          addCanopyHeartLeaf(0, 56, 3, 0.55, 11);
+
+          // Bộ rễ 3D (5 rễ chính)
+          for (let r = 0; r < 5; r++) {
+            const angle = (r * Math.PI * 2) / 5 + 0.25;
+            const rootLen = 28 + seededRandom() * 10;
+            const rx = Math.cos(angle) * rootLen;
+            const rz = Math.sin(angle) * rootLen;
+            addCurvedBranch3D(
+              { x: rx, y: -2, z: rz },
+              { x: rx * 0.48, y: 2, z: rz * 0.48 },
+              { x: Math.cos(angle) * 4, y: 18, z: Math.sin(angle) * 4 },
+              2.2, 6.8, 0.2, 0.8, 3, false
+            );
+          }
+
+          // Thân chính 3D
+          addCurvedBranch3D(
+            { x: 0, y: 0, z: 0 },
+            { x: -4, y: 32, z: 4 },
+            { x: 2, y: 65, z: -2 },
+            13.5, 10.2, 0.2, 1.15, 5, false
+          );
+
+          addCurvedBranch3D(
+            { x: 2, y: 65, z: -2 },
+            { x: 5, y: 90, z: 3 },
+            { x: 0, y: 114, z: 0 },
+            10.2, 7.2, 1.05, 1.95, 5, true
+          );
+
+          // 8 cành lớn tỏa tròn 360 độ trong không gian 3D
+          const mainBoughs = [
+            { startY: 106, end: { x: -58, y: 168, z: 14 }, ctrl: { x: -38, y: 128, z: 10 }, g0: 1.5, g1: 2.6, r0: 6.5, r1: 3.5 },
+            { startY: 106, end: { x: 58, y: 168, z: -12 }, ctrl: { x: 38, y: 128, z: -8 }, g0: 1.5, g1: 2.6, r0: 6.5, r1: 3.5 },
+            { startY: 94,  end: { x: -24, y: 158, z: 54 }, ctrl: { x: -14, y: 118, z: 32 }, g0: 1.7, g1: 2.8, r0: 5.8, r1: 3.1 },
+            { startY: 98,  end: { x: 26, y: 156, z: -54 }, ctrl: { x: 16, y: 120, z: -32 }, g0: 1.7, g1: 2.8, r0: 5.8, r1: 3.1 },
+            { startY: 88,  end: { x: 46, y: 146, z: 42 },  ctrl: { x: 28, y: 112, z: 24 }, g0: 1.85, g1: 2.95, r0: 5.2, r1: 2.9 },
+            { startY: 90,  end: { x: -46, y: 148, z: -42 }, ctrl: { x: -26, y: 114, z: -24 }, g0: 1.85, g1: 2.95, r0: 5.2, r1: 2.9 },
+            { startY: 112, end: { x: -28, y: 196, z: -18 }, ctrl: { x: -16, y: 154, z: -10 }, g0: 2.0, g1: 3.2, r0: 5.4, r1: 2.8 },
+            { startY: 112, end: { x: 28, y: 196, z: 18 },  ctrl: { x: 16, y: 154, z: 10 },  g0: 2.0, g1: 3.2, r0: 5.4, r1: 2.8 }
+          ];
+
+          mainBoughs.forEach((bough) => {
+            const p0 = { x: 0, y: bough.startY, z: 0 };
+            addCurvedBranch3D(p0, bough.ctrl, bough.end, bough.r0, bough.r1, bough.g0, bough.g1, 4, true);
+
+            for (let s = 0; s < 2; s++) {
+              const subAngle = Math.atan2(bough.end.z, bough.end.x) + (s === 0 ? -0.55 : 0.55);
+              const reach = 26 + seededRandom() * 18;
+              const lift = 22 + seededRandom() * 24;
+
+              const subEnd = {
+                x: bough.end.x + Math.cos(subAngle) * reach,
+                y: bough.end.y + lift,
+                z: bough.end.z + Math.sin(subAngle) * reach
+              };
+              const subCtrl = {
+                x: (bough.end.x + subEnd.x) * 0.5,
+                y: (bough.end.y + subEnd.y) * 0.5 + 8,
+                z: (bough.end.z + subEnd.z) * 0.5
+              };
+
+              const subG0 = bough.g1 - 0.15;
+              const subG1 = subG0 + 0.95 + seededRandom() * 0.4;
+              addCurvedBranch3D(bough.end, subCtrl, subEnd, bough.r1, 1.5, subG0, subG1, 3, true);
+            }
+          });
+
+          // Tán lá tình yêu 3D (145 lá to dày tạo khối trái tim 3D rực rỡ mà siêu nhẹ)
+          const totalCrownLeaves = 145;
+          let created = 0;
+          let attempts = 0;
+
+          while (created < totalCrownLeaves && attempts < 1800) {
+            attempts++;
+            const nx = (seededRandom() * 2 - 1) * 1.2;
+            const ny = (seededRandom() * 2 - 1) * 1.12 + 0.12;
+            const nz = (seededRandom() * 2 - 1) * 0.95;
+
+            const a = nx * nx + 1.35 * nz * nz + ny * ny - 1;
+            const heartVal = a * a * a - (nx * nx + 0.65 * nz * nz) * (ny * ny * ny);
+
+            if (heartVal <= 0.08) {
+              const worldX = nx * 86;
+              const worldY = 158 + ny * 64;
+              const worldZ = nz * 76;
+
+              const distNorm = Math.sqrt(nx * nx + ny * ny + nz * nz);
+              const appearStage = 1.6 + Math.min(1, distNorm * 0.85) * 3.9 + seededRandom() * 0.35;
+              const leafSize = 12 + seededRandom() * 7.5;
+
+              addCanopyHeartLeaf(worldX, worldY, worldZ, appearStage, leafSize);
+              created++;
+            }
+          }
+
+          // Các lá tình yêu nằm trang trí trên đảo đất 3D
+          for (let g = 0; g < 14; g++) {
+            const angle = seededRandom() * Math.PI * 2;
+            const radius = 16 + seededRandom() * 56;
+            const gx = Math.cos(angle) * radius;
+            const gz = Math.sin(angle) * radius;
+            const gy = getMoundHeightAt(gx, gz) + 1.2;
+            groundDecorLeaves.push({
+              x: gx,
+              y: gy,
+              z: gz,
+              size: 8.5 + seededRandom() * 4,
+              spriteIdx: Math.floor(seededRandom() * LEAF_COLORS.length),
+              yaw: seededRandom() * Math.PI * 2,
+              appearAt: 1.5 + seededRandom() * 4.0
+            });
+          }
         }
+
+        function spawnFallingTreeLeaf() {
+          if (isPaused || fallingLeaves.length >= 10) return;
+
+          // Chọn ngẫu nhiên một lá đã mọc mà không dùng .filter() tạo mảng mới
+          const len = canopyLeaves.length;
+          for (let tries = 0; tries < 12; tries++) {
+            const candidate = canopyLeaves[Math.floor(Math.random() * len)];
+            if (candidate && candidate.appearAt <= currentGrowthStage - 0.15) {
+              fallingLeaves.push({
+                x: candidate.x,
+                y: candidate.y,
+                z: candidate.z,
+                vx: (Math.random() - 0.5) * 14,
+                vy: -(24 + Math.random() * 12),
+                vz: (Math.random() - 0.5) * 14,
+                size: candidate.size * 0.9,
+                spriteIdx: candidate.spriteIdx,
+                yaw: candidate.baseYaw,
+                roll: candidate.baseRoll,
+                rotSpeedYaw: (Math.random() - 0.5) * 2.8,
+                rotSpeedRoll: (Math.random() - 0.5) * 2.2,
+                swayPhase: Math.random() * Math.PI * 2,
+                swayAmp: 15 + Math.random() * 12,
+                state: 0, // 0: đang rơi, 1: đã chạm đất
+                groundedTime: 0,
+                opacity: 1
+              });
+              break;
+            }
+          }
+        }
+
+        // Quản lý kích thước Canvas bằng ResizeObserver (Không gọi getBoundingClientRect trong vòng lặp 60fps)
+        let logicalWidth = 340;
+        let logicalHeight = 420;
+        let currentDpr = 1;
+
+        function updateCanvasSize() {
+          const rect = canvas.getBoundingClientRect();
+          if (rect.width === 0 || rect.height === 0) return;
+          // Giới hạn DPR ở mức 1.5 để vừa sắc nét vừa siêu mượt trên điện thoại màn hình độ phân giải cao
+          currentDpr = Math.min(window.devicePixelRatio || 1, 1.5);
+          logicalWidth = rect.width;
+          logicalHeight = rect.height;
+          canvas.width = Math.round(logicalWidth * currentDpr);
+          canvas.height = Math.round(logicalHeight * currentDpr);
+        }
+
+        if (window.ResizeObserver) {
+          const ro = new ResizeObserver(() => updateCanvasSize());
+          ro.observe(canvas);
+        } else {
+          window.addEventListener('resize', updateCanvasSize);
+        }
+
+        // Xử lý kéo chuột / chạm vuốt để xoay cây 3D qua lại
+        function attachInteractionEvents() {
+          canvas.addEventListener('pointerdown', function (e) {
+            isDragging = true;
+            lastPointerX = e.clientX;
+            lastPointerY = e.clientY;
+            yawVelocity = 0;
+            if (canvas.setPointerCapture) {
+              try { canvas.setPointerCapture(e.pointerId); } catch (err) {}
+            }
+          });
+
+          canvas.addEventListener('pointermove', function (e) {
+            if (!isDragging) return;
+            const dx = e.clientX - lastPointerX;
+            const dy = e.clientY - lastPointerY;
+            lastPointerX = e.clientX;
+            lastPointerY = e.clientY;
+
+            const deltaYaw = dx * 0.011;
+            userYaw += deltaYaw;
+            yawVelocity = deltaYaw * 0.85;
+            cameraPitch = Math.max(0.04, Math.min(0.35, cameraPitch + dy * 0.003));
+          });
+
+          function endDrag(e) {
+            if (!isDragging) return;
+            isDragging = false;
+            if (e && canvas.releasePointerCapture) {
+              try { canvas.releasePointerCapture(e.pointerId); } catch (err) {}
+            }
+          }
+
+          canvas.addEventListener('pointerup', endDrag);
+          canvas.addEventListener('pointercancel', endDrag);
+          canvas.addEventListener('pointerleave', endDrag);
+        }
+
+        let lastTime = performance.now();
+        let leafSpawnAccumulator = 0;
+
+        function renderLoop(now) {
+          if (!isRunning) return;
+          requestAnimationFrame(renderLoop);
+
+          if (logicalWidth === 0) updateCanvasSize();
+
+          const dt = Math.min(0.05, (now - lastTime) / 1000);
+          lastTime = now;
+
+          ctx.setTransform(currentDpr, 0, 0, currentDpr, 0, 0);
+          ctx.clearRect(0, 0, logicalWidth, logicalHeight);
+
+          if (!isPaused) {
+            const diff = targetGrowthStage - currentGrowthStage;
+            if (Math.abs(diff) > 0.002) {
+              currentGrowthStage += diff * Math.min(1, dt * 1.7);
+            }
+
+            if (!isDragging) {
+              userYaw += yawVelocity;
+              yawVelocity *= Math.pow(0.92, dt * 60);
+              autoSwayYaw = Math.sin(now * 0.00075) * 0.42;
+            }
+
+            const spawnInterval = currentGrowthStage >= 3 ? 0.75 : 1.3;
+            leafSpawnAccumulator += dt;
+            if (leafSpawnAccumulator >= spawnInterval) {
+              leafSpawnAccumulator = 0;
+              spawnFallingTreeLeaf();
+            }
+          }
+
+          const totalYaw = userYaw + autoSwayYaw;
+          const cosYaw = Math.cos(totalYaw);
+          const sinYaw = Math.sin(totalYaw);
+          const cosPitch = Math.cos(cameraPitch);
+          const sinPitch = Math.sin(cameraPitch);
+
+          const centerX = logicalWidth * 0.5;
+          const baseY = logicalHeight * 0.84;
+          const scaleFactor = Math.min(logicalWidth / 310, logicalHeight / 345);
+          const fov = 560;
+          const cameraDist = 420;
+
+          // Hàm chiếu tọa độ 3D nội tuyến nhanh
+          function projectFast(x, y, z) {
+            const rx = x * cosYaw + z * sinYaw;
+            const rz = -x * sinYaw + z * cosYaw;
+            const cy = y * cosPitch - rz * sinPitch;
+            const cz = y * sinPitch + rz * cosPitch;
+            const p = (fov / Math.max(80, cameraDist - cz)) * scaleFactor;
+            return {
+              sx: centerX + rx * p,
+              sy: baseY - cy * p,
+              cz: cz,
+              scale: p
+            };
+          }
+
+          // 1. Vẽ đảo đất 3D dưới gốc cây
+          const moundLayers = [
+            { y: -6, rx: 78, ry: 22, color: '#e88aa9' },
+            { y: -2, rx: 66, ry: 18.5, color: '#f3a8c1' },
+            { y: 1.5, rx: 50, ry: 14, color: '#fbc5d8' }
+          ];
+          for (let m = 0; m < moundLayers.length; m++) {
+            const layer = moundLayers[m];
+            const pt = projectFast(0, layer.y, 0);
+            ctx.beginPath();
+            ctx.ellipse(pt.sx, pt.sy, layer.rx * pt.scale, layer.ry * pt.scale, 0, 0, Math.PI * 2);
+            ctx.fillStyle = layer.color;
+            ctx.fill();
+          }
+
+          // Đặt lại bộ đếm hàng đợi 3D (Zero-GC)
+          renderCount = 0;
+
+          // 2. Lá tình yêu trên mặt đất 3D
+          for (let i = 0; i < groundDecorLeaves.length; i++) {
+            const gLeaf = groundDecorLeaves[i];
+            if (currentGrowthStage < gLeaf.appearAt) continue;
+            const prog = Math.min(1, (currentGrowthStage - gLeaf.appearAt) / 0.6);
+            const pt = projectFast(gLeaf.x, gLeaf.y, gLeaf.z);
+            const node = getRenderNode();
+            node.type = 1;
+            node.cz = pt.cz - 8;
+            node.sx = pt.sx;
+            node.sy = pt.sy;
+            node.size = gLeaf.size * pt.scale * prog;
+            node.scaleX = 0.85;
+            node.rot = Math.sin(gLeaf.yaw + totalYaw) * 0.4;
+            node.spriteIdx = gLeaf.spriteIdx;
+            node.alpha = 0.85 * prog;
+          }
+
+          // 3. Thân cây & các nhánh 3D
+          const thicknessScale = 0.45 + 0.55 * Math.min(1, currentGrowthStage / 3.5);
+          for (let i = 0; i < branchSegments.length; i++) {
+            const seg = branchSegments[i];
+            if (currentGrowthStage <= seg.g0) continue;
+            const segProgress = Math.min(1, (currentGrowthStage - seg.g0) / Math.max(0.05, seg.g1 - seg.g0));
+
+            const curX = seg.p0.x + (seg.p1.x - seg.p0.x) * segProgress;
+            const curY = seg.p0.y + (seg.p1.y - seg.p0.y) * segProgress;
+            const curZ = seg.p0.z + (seg.p1.z - seg.p0.z) * segProgress;
+
+            const proj0 = projectFast(seg.p0.x, seg.p0.y, seg.p0.z);
+            const proj1 = projectFast(curX, curY, curZ);
+
+            const node = getRenderNode();
+            node.type = 0;
+            node.cz = (proj0.cz + proj1.cz) * 0.5;
+            node.sx0 = proj0.sx;
+            node.sy0 = proj0.sy;
+            node.r0 = seg.r0 * proj0.scale * thicknessScale;
+            node.sx1 = proj1.sx;
+            node.sy1 = proj1.sy;
+            node.r1 = (seg.r0 + (seg.r1 - seg.r0) * segProgress) * proj1.scale * thicknessScale;
+          }
+
+          // 4. Tán lá tình yêu 3D
+          const windTime = now * 0.0018;
+          for (let i = 0; i < canopyLeaves.length; i++) {
+            const leaf = canopyLeaves[i];
+            if (currentGrowthStage <= leaf.appearAt) continue;
+            const rawProg = Math.min(1, (currentGrowthStage - leaf.appearAt) / 0.55);
+            const bloomScale = rawProg < 0.75
+              ? (rawProg / 0.75) * 1.1
+              : 1.1 - ((rawProg - 0.75) / 0.25) * 0.1;
+
+            const swayPhase = windTime * leaf.swaySpeed + leaf.swayPhase;
+            const windSwayX = Math.sin(swayPhase) * 2.0;
+            const windSwayY = Math.cos(swayPhase) * 1.1;
+
+            const pt = projectFast(leaf.x + windSwayX, leaf.y + windSwayY, leaf.z);
+
+            // Hiệu ứng nghiêng mặt lá 3D khi xoay cây
+            const relYaw = leaf.baseYaw + totalYaw * 0.65;
+            const rawCos = Math.cos(relYaw);
+            const scaleX3D = Math.abs(rawCos) < 0.35 ? (rawCos < 0 ? -0.35 : 0.35) : rawCos;
+
+            const node = getRenderNode();
+            node.type = 1;
+            node.cz = pt.cz;
+            node.sx = pt.sx;
+            node.sy = pt.sy;
+            node.size = leaf.size * pt.scale * bloomScale;
+            node.scaleX = scaleX3D;
+            node.rot = leaf.baseRoll + Math.sin(swayPhase) * 0.14;
+            node.spriteIdx = leaf.spriteIdx;
+            node.alpha = Math.min(1, rawProg * 1.25);
+          }
+
+          // 5. Các chiếc lá tình yêu rơi từ trên cây xuống đất
+          for (let i = fallingLeaves.length - 1; i >= 0; i--) {
+            const fl = fallingLeaves[i];
+
+            if (!isPaused) {
+              if (fl.state === 0) {
+                fl.swayPhase += dt * 3.1;
+                fl.x += (fl.vx + Math.cos(fl.swayPhase) * fl.swayAmp) * dt;
+                fl.z += (fl.vz + Math.sin(fl.swayPhase * 0.85) * fl.swayAmp) * dt;
+                fl.y += fl.vy * dt;
+                fl.yaw += fl.rotSpeedYaw * dt;
+                fl.roll += fl.rotSpeedRoll * dt;
+
+                const groundY = getMoundHeightAt(fl.x, fl.z) + 1.5;
+                if (fl.y <= groundY) {
+                  fl.y = groundY;
+                  fl.state = 1;
+                }
+              } else {
+                fl.groundedTime += dt;
+                if (fl.groundedTime > 2.2) {
+                  fl.opacity = Math.max(0, 1 - (fl.groundedTime - 2.2) / 1.1);
+                  if (fl.opacity <= 0.02) {
+                    fallingLeaves.splice(i, 1);
+                    continue;
+                  }
+                }
+              }
+            }
+
+            const pt = projectFast(fl.x, fl.y, fl.z);
+            const rawCos = Math.cos(fl.yaw + totalYaw);
+            const scaleX3D = fl.state === 1
+              ? 0.85
+              : (Math.abs(rawCos) < 0.3 ? (rawCos < 0 ? -0.3 : 0.3) : rawCos);
+
+            const node = getRenderNode();
+            node.type = 1;
+            node.cz = pt.cz;
+            node.sx = pt.sx;
+            node.sy = pt.sy;
+            node.size = fl.size * pt.scale;
+            node.scaleX = scaleX3D;
+            node.rot = fl.roll;
+            node.spriteIdx = fl.spriteIdx;
+            node.alpha = fl.opacity;
+          }
+
+          // 6. Sắp xếp chiều sâu 3D (chỉ sắp xếp phần mảng đang hoạt động)
+          const activeSlice = renderPool.slice(0, renderCount);
+          activeSlice.sort((a, b) => a.cz - b.cz);
+
+          // 7. Vẽ toàn bộ cây & lá tình yêu 3D bằng Sprite siêu tốc
+          for (let i = 0; i < renderCount; i++) {
+            const item = activeSlice[i];
+
+            if (item.type === 0) {
+              const dx = item.sx1 - item.sx0;
+              const dy = item.sy1 - item.sy0;
+              const len = Math.hypot(dx, dy);
+              if (len < 0.3) continue;
+
+              const nx = -dy / len;
+              const ny = dx / len;
+              const isBack = item.cz < -18;
+              const trunkColor = isBack ? '#642c41' : '#7b3852';
+
+              ctx.globalAlpha = 1;
+              ctx.beginPath();
+              ctx.moveTo(item.sx0 + nx * item.r0, item.sy0 + ny * item.r0);
+              ctx.lineTo(item.sx1 + nx * item.r1, item.sy1 + ny * item.r1);
+              ctx.lineTo(item.sx1 - nx * item.r1, item.sy1 - ny * item.r1);
+              ctx.lineTo(item.sx0 - nx * item.r0, item.sy0 - ny * item.r0);
+              ctx.closePath();
+              ctx.fillStyle = trunkColor;
+              ctx.fill();
+
+              ctx.beginPath();
+              ctx.arc(item.sx1, item.sy1, item.r1, 0, Math.PI * 2);
+              ctx.fill();
+            } else {
+              if (item.size <= 0.5 || item.alpha <= 0.02) continue;
+
+              const sprite = leafSprites[item.spriteIdx];
+              const drawRadius = item.size;
+
+              ctx.save();
+              ctx.globalAlpha = item.alpha;
+              ctx.translate(item.sx, item.sy);
+              ctx.rotate(item.rot);
+              ctx.scale(item.scaleX, 1);
+              ctx.drawImage(sprite, -drawRadius, -drawRadius, drawRadius * 2, drawRadius * 2);
+              ctx.restore();
+            }
+          }
+          ctx.globalAlpha = 1;
+        }
+
+        buildHeartSprites();
+        build3DLoveTreeGeometry();
+        attachInteractionEvents();
+
+        return {
+          start: function () {
+            if (isRunning) return;
+            isRunning = true;
+            updateCanvasSize();
+            lastTime = performance.now();
+            requestAnimationFrame(renderLoop);
+          },
+          setStage: function (stageNum) {
+            targetGrowthStage = Math.max(0.35, Math.min(6.0, stageNum));
+            spawnFallingTreeLeaf();
+          }
+        };
+      })(loveTree3DCanvas);
+
+      function updateLoveTreeStage(stageNumber) {
+        LoveTree3DEngine.setStage(stageNumber);
       }
 
       /* ----------------------------------------------------------------------
@@ -1893,17 +2245,17 @@
          ---------------------------------------------------------------------- */
       function setAiEyesLook(leftX, leftY, rightX, rightY) {
         if (aiLeftPupil) {
-          aiLeftPupil.style.transform = `translate(${leftX}px, ${leftY}px)`;
+          aiLeftPupil.style.transform = `translate3d(${leftX}px, ${leftY}px, 0)`;
         }
         if (aiRightPupil) {
-          aiRightPupil.style.transform = `translate(${rightX}px, ${rightY}px)`;
+          aiRightPupil.style.transform = `translate3d(${rightX}px, ${rightY}px, 0)`;
         }
       }
 
       async function triggerBlink() {
         if (isPaused) return;
         aiCharacter.classList.add('is-blinking');
-        await unskippableWait(130);
+        await unskippableWait(120);
         aiCharacter.classList.remove('is-blinking');
       }
 
@@ -1920,7 +2272,6 @@
         }
       }
 
-      // Di chuyển AI theo đường cong mượt giữa Góc màn hình và Vị trí gần câu chữ đang viết
       function moveAiCharacterTo(mode) {
         aiPositionMode = mode;
         const isMobile = window.innerWidth <= 860;
@@ -1934,10 +2285,8 @@
 
           aiFlyX.style.transform = `translate3d(${targetOffsetX}px, 0, 0)`;
           aiFlyY.style.transform = `translate(-50%, -50%) translate3d(0, ${targetOffsetY}px, 0) scale(${scale})`;
-          // Mắt nhìn hướng lên phía bức thư tình
           setAiEyesLook(-5, -5.5, -4, -5.5);
         } else if (mode === 'near-letter') {
-          // Di chuyển từ góc lên gần mép bức thư để cùng người viết kể chuyện nhưng KHÔNG che chữ/cây/GIF
           const letterRect = loveLetterCard.getBoundingClientRect();
           const scale = isMobile ? 0.48 : 0.58;
 
@@ -1945,11 +2294,9 @@
           let targetScreenY;
 
           if (!isMobile) {
-            // Đặt AI ở khoảng giữa bên dưới bức thư và cây tình yêu, ngang tầm câu chữ
             targetScreenX = Math.min(window.innerWidth - 56, letterRect.right + 18);
             targetScreenY = Math.max(110, Math.min(window.innerHeight - 90, letterRect.top + 145));
           } else {
-            // Trên điện thoại: nhích lên góc phải phía dưới câu chữ một chút, gọn gàng không che nội dung
             targetScreenX = window.innerWidth - 44;
             targetScreenY = Math.min(window.innerHeight - 115, Math.max(120, letterRect.bottom - 20));
           }
@@ -1959,7 +2306,6 @@
 
           aiFlyX.style.transform = `translate3d(${targetOffsetX}px, 0, 0)`;
           aiFlyY.style.transform = `translate(-50%, -50%) translate3d(0, ${targetOffsetY}px, 0) scale(${scale})`;
-          // Mắt nhìn chăm chú vào dòng chữ đang được viết
           setAiEyesLook(-6.5, -1.5, -5.5, -1.5);
         }
       }
@@ -1989,7 +2335,6 @@
           if (rand < 0.48) {
             await triggerBlink();
           } else if (rand < 0.78) {
-            // Liếc mắt nhẹ sang bên rồi nhìn lại về phía câu chữ
             setAiEyesLook(-6.5, -2, -5.5, -2);
             await unskippableWait(650);
             setAiEyesLook(-4.5, -5, -3.5, -5);
@@ -2006,7 +2351,7 @@
          ---------------------------------------------------------------------- */
       function spawnSingleFallingPetalOrHeart(isCelebration = false) {
         if (isPaused || prefersReducedMotion) return;
-        const maxLimit = isCelebration ? CONFIG.maxFallingItems + 8 : CONFIG.maxFallingItems;
+        const maxLimit = isCelebration ? CONFIG.maxFallingItems + 5 : CONFIG.maxFallingItems;
         if (activeFallingCount >= maxLimit) return;
 
         activeFallingCount++;
@@ -2014,63 +2359,35 @@
         item.className = 'falling-item';
 
         const isHeart = Math.random() < 0.38;
-        const size = isHeart ? (11 + Math.random() * 9) : (13 + Math.random() * 11);
-        const startLeft = Math.random() * 96; // % chiều ngang màn hình
+        const size = isHeart ? (11 + Math.random() * 8) : (13 + Math.random() * 9);
+        const startLeft = Math.random() * 96;
         item.style.left = `${startLeft}vw`;
 
         if (isHeart) {
           const heartColors = ['#ec6b96', '#ff8da9', '#d83b6c', '#f497b6'];
           const color = heartColors[Math.floor(Math.random() * heartColors.length)];
-          item.innerHTML = `
-            <svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="${color}" opacity="0.72">
-              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-            </svg>
-          `;
+          item.innerHTML = `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="${color}" opacity="0.72"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`;
         } else {
-          // Hình cánh hoa hồng mềm mại
           const petalColors = ['#f59bb8', '#ffadc6', '#e87a9f', '#fbc2d4'];
           const color = petalColors[Math.floor(Math.random() * petalColors.length)];
-          item.innerHTML = `
-            <svg width="${size}" height="${size * 1.25}" viewBox="0 0 24 30" fill="none">
-              <path d="M12 2C5 8 2 16 6 24C9 29 15 29 18 24C22 16 19 8 12 2Z" fill="${color}" opacity="0.76"/>
-            </svg>
-          `;
+          item.innerHTML = `<svg width="${size}" height="${size * 1.25}" viewBox="0 0 24 30" fill="none"><path d="M12 2C5 8 2 16 6 24C9 29 15 29 18 24C22 16 19 8 12 2Z" fill="${color}" opacity="0.76"/></svg>`;
         }
 
         fallingLayer.appendChild(item);
 
-        const swayX = (Math.random() - 0.5) * 130;
-        const endX = swayX + (Math.random() - 0.5) * 60;
+        const swayX = (Math.random() - 0.5) * 110;
+        const endX = swayX + (Math.random() - 0.5) * 50;
         const rotStart = Math.random() * 60 - 30;
-        const rotEnd = rotStart + (Math.random() > 0.5 ? 160 : -160);
-        const duration = 6200 + Math.random() * 3400;
+        const rotEnd = rotStart + (Math.random() > 0.5 ? 150 : -150);
+        const duration = 6400 + Math.random() * 3000;
 
         const anim = item.animate(
           [
-            {
-              transform: `translate3d(0, -20px, 0) rotate(${rotStart}deg)`,
-              opacity: 0
-            },
-            {
-              transform: `translate3d(${swayX * 0.4}px, 25vh, 0) rotate(${(rotStart + rotEnd) * 0.35}deg)`,
-              opacity: 0.85,
-              offset: 0.22
-            },
-            {
-              transform: `translate3d(${swayX}px, 65vh, 0) rotate(${(rotStart + rotEnd) * 0.75}deg)`,
-              opacity: 0.8,
-              offset: 0.7
-            },
-            {
-              transform: `translate3d(${endX}px, 105vh, 0) rotate(${rotEnd}deg)`,
-              opacity: 0
-            }
+            { transform: `translate3d(0, -20px, 0) rotate(${rotStart}deg)`, opacity: 0 },
+            { transform: `translate3d(${swayX * 0.5}px, 35vh, 0) rotate(${(rotStart + rotEnd) * 0.45}deg)`, opacity: 0.85, offset: 0.3 },
+            { transform: `translate3d(${endX}px, 104vh, 0) rotate(${rotEnd}deg)`, opacity: 0 }
           ],
-          {
-            duration: duration,
-            easing: 'linear',
-            fill: 'forwards'
-          }
+          { duration: duration, easing: 'linear', fill: 'forwards' }
         );
 
         activeWebAnimations.add(anim);
@@ -2088,8 +2405,7 @@
         }, CONFIG.fallingSpawnIntervalMs);
       }
 
-      // Tạo đợt trái tim nhỏ bay ra xung quanh câu chữ sau khi câu được viết xong
-      function spawnHeartsAroundElement(targetElement, count = 6) {
+      function spawnHeartsAroundElement(targetElement, count = 5) {
         if (!targetElement || isPaused) return;
         const rect = targetElement.getBoundingClientRect();
         const actualCount = prefersReducedMotion ? 2 : count;
@@ -2098,44 +2414,39 @@
         for (let i = 0; i < actualCount; i++) {
           const heartEl = document.createElement('div');
           heartEl.className = 'floating-mini-heart';
-          const size = 13 + Math.random() * 9;
+          const size = 13 + Math.random() * 8;
           const color = colors[i % colors.length];
 
-          heartEl.innerHTML = `
-            <svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="${color}">
-              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-            </svg>
-          `;
+          heartEl.innerHTML = `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="${color}"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`;
 
-          // Phân bố ngẫu nhiên dọc theo chiều ngang của câu chữ
           const startX = rect.left + 20 + Math.random() * Math.max(40, rect.width - 40);
-          const startY = rect.top + rect.height * 0.5 + (Math.random() - 0.5) * 20;
+          const startY = rect.top + rect.height * 0.5 + (Math.random() - 0.5) * 18;
 
           heartEl.style.left = `${startX}px`;
           heartEl.style.top = `${startY}px`;
           document.body.appendChild(heartEl);
 
-          const driftX = (Math.random() - 0.5) * 80;
-          const liftY = -(45 + Math.random() * 55);
-          const rotateDeg = (Math.random() - 0.5) * 40;
-          const duration = 850 + Math.random() * 350;
+          const driftX = (Math.random() - 0.5) * 70;
+          const liftY = -(40 + Math.random() * 50);
+          const rotateDeg = (Math.random() - 0.5) * 35;
+          const duration = 800 + Math.random() * 300;
 
           const anim = heartEl.animate(
             [
-              { transform: 'translate(-50%, -50%) scale(0.4)', opacity: 0 },
+              { transform: 'translate3d(-50%, -50%, 0) scale(0.4)', opacity: 0 },
               {
-                transform: `translate(calc(-50% + ${driftX * 0.4}px), calc(-50% + ${liftY * 0.4}px)) scale(1.08) rotate(${rotateDeg * 0.5}deg)`,
+                transform: `translate3d(calc(-50% + ${driftX * 0.4}px), calc(-50% + ${liftY * 0.4}px), 0) scale(1.06) rotate(${rotateDeg * 0.5}deg)`,
                 opacity: 0.95,
                 offset: 0.3
               },
               {
-                transform: `translate(calc(-50% + ${driftX}px), calc(-50% + ${liftY}px)) scale(0.6) rotate(${rotateDeg}deg)`,
+                transform: `translate3d(calc(-50% + ${driftX}px), calc(-50% + ${liftY}px), 0) scale(0.6) rotate(${rotateDeg}deg)`,
                 opacity: 0
               }
             ],
             {
               duration: duration,
-              delay: i * 45,
+              delay: i * 40,
               easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
               fill: 'forwards'
             }
@@ -2153,40 +2464,36 @@
          9. HIỆU ỨNG TRÁI TIM MỞ ĐẦU VỠ THÀNH MẢNH NHỎ MỀM MẠI
          ---------------------------------------------------------------------- */
       function createHeartBurstParticles() {
-        const particleCount = prefersReducedMotion ? 8 : 20;
+        const particleCount = prefersReducedMotion ? 6 : 16;
         const colors = ['#ec6b96', '#ff8da9', '#d83b6c', '#ffb3c6', '#f27da4'];
 
         for (let i = 0; i < particleCount; i++) {
           const particle = document.createElement('div');
           particle.className = 'burst-particle';
 
-          const size = 12 + Math.random() * 14;
+          const size = 12 + Math.random() * 13;
           const color = colors[i % colors.length];
-          particle.innerHTML = `
-            <svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="${color}">
-              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-            </svg>
-          `;
+          particle.innerHTML = `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="${color}"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`;
 
           heartStage.appendChild(particle);
 
-          const angle = (Math.PI * 2 * i) / particleCount + (Math.random() - 0.5) * 0.35;
-          const distance = 65 + Math.random() * 95;
+          const angle = (Math.PI * 2 * i) / particleCount + (Math.random() - 0.5) * 0.3;
+          const distance = 60 + Math.random() * 85;
           const targetX = Math.cos(angle) * distance;
-          const targetY = Math.sin(angle) * distance - (15 + Math.random() * 25);
-          const rotation = (Math.random() - 0.5) * 70;
-          const duration = 750 + Math.random() * 380;
+          const targetY = Math.sin(angle) * distance - (12 + Math.random() * 20);
+          const rotation = (Math.random() - 0.5) * 65;
+          const duration = 700 + Math.random() * 320;
 
           const animation = particle.animate(
             [
-              { transform: 'translate(-50%, -50%) scale(0.4) rotate(0deg)', opacity: 1 },
+              { transform: 'translate3d(-50%, -50%, 0) scale(0.4) rotate(0deg)', opacity: 1 },
               {
-                transform: `translate(calc(-50% + ${targetX * 0.65}px), calc(-50% + ${targetY * 0.65}px)) scale(1.05) rotate(${rotation * 0.6}deg)`,
+                transform: `translate3d(calc(-50% + ${targetX * 0.65}px), calc(-50% + ${targetY * 0.65}px), 0) scale(1.05) rotate(${rotation * 0.6}deg)`,
                 opacity: 0.9,
                 offset: 0.45
               },
               {
-                transform: `translate(calc(-50% + ${targetX}px), calc(-50% + ${targetY + 18}px)) scale(0.25) rotate(${rotation}deg)`,
+                transform: `translate3d(calc(-50% + ${targetX}px), calc(-50% + ${targetY + 18}px), 0) scale(0.25) rotate(${rotation}deg)`,
                 opacity: 0
               }
             ],
@@ -2202,29 +2509,25 @@
       }
 
       /* ----------------------------------------------------------------------
-         10. HIỆU ỨNG GÕ CHỮ TỪNG KÝ TỰ & VIẾT HOA CHỮ CÁI ĐẦU TIÊN
+         10. HIỆU ỨNG GÕ CHỮ TỐI ƯU (CẬP NHẬT TEXTCONTENT, KHÔNG PARSE INNERHTML)
          ---------------------------------------------------------------------- */
-      function escapeHtml(str) {
-        return str
-          .replace(/&/g, '&amp;')
-          .replace(/</g, '&lt;')
-          .replace(/>/g, '&gt;')
-          .replace(/"/g, '&quot;')
-          .replace(/'/g, '&#039;');
+      function clearSentenceDisplay() {
+        lockedTextSpan.textContent = '';
+        decodeCharSpan.textContent = '';
       }
 
-      async function typeLoveSentence(element, rawSentence) {
+      async function typeLoveSentence(rawSentence) {
         const finalFormatted = capitalizeVietnameseSentence(rawSentence);
 
         if (prefersReducedMotion) {
-          element.textContent = finalFormatted;
+          lockedTextSpan.textContent = finalFormatted;
+          decodeCharSpan.textContent = '';
           return;
         }
 
-        element.textContent = '';
+        clearSentenceDisplay();
         const chars = Array.from(rawSentence.trim());
 
-        // Trong lúc gõ chữ, nhân vật AI nghiêng đầu gật gù nhẹ và nhìn theo dòng chữ
         aiCharacter.classList.add('is-thinking-nod');
 
         for (let i = 0; i < chars.length; i++) {
@@ -2232,35 +2535,32 @@
             break;
           }
 
-          const currentLocked = chars.slice(0, i + 1).join('');
+          lockedTextSpan.textContent = chars.slice(0, i + 1).join('');
 
-          // Liếc mắt AI nhẹ từ trái sang phải theo tiến độ dòng chữ đang viết
-          const progress = i / Math.max(1, chars.length);
-          const eyeOffsetX = -6.5 + progress * 3.5;
-          setAiEyesLook(eyeOffsetX, -2.5, eyeOffsetX + 1, -2.5);
+          // Chỉ cập nhật mắt AI mỗi 3 ký tự để giảm tải tính toán style
+          if (i % 3 === 0) {
+            const progress = i / Math.max(1, chars.length);
+            const eyeOffsetX = -6.5 + progress * 3.5;
+            setAiEyesLook(eyeOffsetX, -2.5, eyeOffsetX + 1, -2.5);
+          }
 
-          // Thỉnh thoảng chớp mắt tự nhiên khi đang viết
-          if (i > 0 && i % 26 === 0) {
+          if (i > 0 && i % 28 === 0) {
             triggerBlink();
           }
 
           if (i < chars.length - 1 && chars[i + 1] !== ' ') {
-            const randomDecodeChar =
+            decodeCharSpan.textContent =
               hackerLetters[Math.floor(Math.random() * hackerLetters.length)];
-            element.innerHTML =
-              escapeHtml(currentLocked) +
-              `<span class="decode-char">${escapeHtml(randomDecodeChar)}</span>`;
           } else {
-            element.textContent = currentLocked;
+            decodeCharSpan.textContent = '';
           }
 
           await smartWait(CONFIG.charTypeSpeedMs, true);
         }
 
         aiCharacter.classList.remove('is-thinking-nod');
-
-        // Khi viết xong: Chữ cái đầu tiên của câu tự động viết hoa chuẩn ngữ pháp tiếng Việt
-        element.textContent = finalFormatted;
+        lockedTextSpan.textContent = finalFormatted;
+        decodeCharSpan.textContent = '';
       }
 
       function updateProgressDots(currentIndex) {
@@ -2277,53 +2577,49 @@
         if (hasStarted) return;
         hasStarted = true;
 
-        // PHÁT NHẠC NGAY KHI NHẤN TRÁI TIM (style/nhac.mp3)
         playBackgroundMusicWithFadeIn();
 
-        // 1-3. Trái tim mở đầu phóng to nhẹ, rung 1 nhịp rồi nổ thành các mảnh nhỏ
         heartTriggerBtn.disabled = true;
         introHintBtn.disabled = true;
         introTextGroup.classList.add('is-fading');
         heartTriggerBtn.classList.add('is-bursting');
 
-        await unskippableWait(240);
+        await unskippableWait(220);
         createHeartBurstParticles();
 
-        await unskippableWait(560);
+        await unskippableWait(520);
         introScreen.classList.add('is-hidden');
 
-        // 4. Nhân vật AI xuất hiện ở giữa, đảo mắt sang hai bên, nhìn thẳng, cười ^^ và lắc nhẹ
         aiFlyY.classList.add('stage-appear');
-        await unskippableWait(780);
+        await unskippableWait(750);
 
         setAiEyesLook(-6.5, 0, -5.2, 0);
-        await unskippableWait(580);
+        await unskippableWait(540);
 
         setAiEyesLook(5.2, 0, 6.5, 0);
-        await unskippableWait(620);
+        await unskippableWait(580);
 
         setAiEyesLook(0, 0, 0, 0);
-        await unskippableWait(240);
+        await unskippableWait(220);
         await triggerBlink();
-        await unskippableWait(340);
+        await unskippableWait(300);
 
         setHappyExpression(true, 'Chào Thoa nè ^^');
         aiCharacter.classList.add('is-happy-wiggle');
-        await unskippableWait(1200);
+        await unskippableWait(1150);
         aiCharacter.classList.remove('is-happy-wiggle');
         setHappyExpression(false);
-        await unskippableWait(180);
+        await unskippableWait(150);
 
-        // 5. AI thu nhỏ theo đường cong mượt về góc màn hình
         moveAiCharacterTo('corner');
-        await unskippableWait(1100);
+        await unskippableWait(1050);
 
-        // 6-7. Bức thư tình xuất hiện & Cây tình yêu bắt đầu mọc từ mầm nhỏ + Cánh hoa rơi nhẹ
+        // Bắt đầu hiển thị sân khấu & kích hoạt vòng lặp Cây Tình Yêu 3D
         storyStageWrapper.classList.add('is-active');
+        LoveTree3DEngine.start();
         startGentleFallingPetals();
-        await unskippableWait(500);
+        await unskippableWait(450);
 
-        // 8-15. Chạy hệ thống kể chuyện tự động từng câu (xuất hiện -> gõ chữ -> giữ 3-5s -> biến mất hoàn toàn)
         for (let i = 0; i < STORY_SENTENCES.length; i++) {
           skipRequested = false;
           const step = STORY_SENTENCES[i];
@@ -2331,92 +2627,78 @@
 
           updateProgressDots(i);
 
-          // Cây tình yêu lớn dần theo từng câu
-          updateLoveTreeStage(step.treeStage, step.treeCaption);
+          // Cây tình yêu 3D lớn dần theo từng câu
+          updateLoveTreeStage(step.treeStage);
 
-          // Chuẩn bị khung câu mới (đảm bảo sạch nội dung cũ trước khi fade-in)
-          activeSentenceText.textContent = '';
+          clearSentenceDisplay();
           activeSentenceText.classList.toggle('is-climax-text', Boolean(step.isClimax));
           climaxSubtext.classList.remove('is-mounted', 'is-visible');
           gifStageBox.classList.remove('is-mounted', 'is-visible', 'has-error');
 
           if (step.isClimax) {
             loveLetterCard.classList.add('is-climax-mode');
-            // Đợt cánh hoa rơi đẹp hơn một chút khi bước vào câu tỏ tình cuối
-            for (let p = 0; p < 5; p++) {
-              setTimeout(() => spawnSingleFallingPetalOrHeart(true), p * 220);
+            for (let p = 0; p < 4; p++) {
+              setTimeout(() => spawnSingleFallingPetalOrHeart(true), p * 240);
             }
           }
 
-          // Nhân vật AI di chuyển lên gần câu chữ ở một số câu để cùng kể chuyện
           if (step.aiVisitLetter) {
             moveAiCharacterTo('near-letter');
           } else {
             moveAiCharacterTo('corner');
           }
 
-          // Bước 1: Câu mới xuất hiện dần bằng fade-in
           sentenceScene.classList.remove('is-fading-out');
           sentenceScene.classList.add('is-visible');
-          await smartWait(200, true);
+          await smartWait(180, true);
 
-          // Bước 2 & 3: Các ký tự được viết lần lượt, viết xong tự động viết hoa chữ cái đầu
-          await typeLoveSentence(activeSentenceText, step.text);
+          await typeLoveSentence(step.text);
 
-          // Nếu có ảnh GIF chỉ định cho câu này: hiện ra sau khi chữ đã viết xong
           if (step.gifUrl) {
             gifFallbackText.textContent = step.gifFallback;
             activeStoryGif.src = step.gifUrl;
             gifStageBox.classList.add('is-mounted');
-            await unskippableWait(50);
+            await unskippableWait(40);
             gifStageBox.classList.add('is-visible');
           }
 
-          // Nếu là câu cuối: hiện thêm dòng nhắn nhủ nhỏ bên dưới
           if (step.isClimax) {
             climaxSubtext.classList.add('is-mounted');
-            await unskippableWait(50);
+            await unskippableWait(40);
             climaxSubtext.classList.add('is-visible');
           }
 
-          // Bước 4 & 5: Câu viết xong -> AI vui vẻ cười ^^ lắc nhẹ + Trái tim nhỏ bay ra quanh câu chữ
-          spawnHeartsAroundElement(activeSentenceText, step.isClimax ? 10 : 6);
+          spawnHeartsAroundElement(activeSentenceText, step.isClimax ? 8 : 5);
           setHappyExpression(true, step.aiBadge || '^^');
           aiCharacter.classList.remove('is-happy-wiggle');
           void aiCharacter.offsetWidth;
           aiCharacter.classList.add('is-happy-wiggle');
 
-          // Bước 6: Giữ nguyên câu trên màn hình khoảng 3–5 giây để Thoa đọc
-          await smartWait(1150, true);
+          await smartWait(1100, true);
           aiCharacter.classList.remove('is-happy-wiggle');
 
-          // Nếu AI đang ở gần bức thư thì sau vài giây di chuyển mượt trở về vị trí góc màn hình
           if (!isLastSentence) {
-            await smartWait(CONFIG.sentenceReadHoldMs - 1150, true);
+            await smartWait(CONFIG.sentenceReadHoldMs - 1100, true);
             setHappyExpression(false);
             if (step.aiVisitLetter) {
               moveAiCharacterTo('corner');
             }
 
-            // Bước 7 & 8: Bắt buộc câu cũ mờ dần bằng fade-out hoàn toàn trước khi câu tiếp theo xuất hiện
             sentenceScene.classList.remove('is-visible');
             sentenceScene.classList.add('is-fading-out');
             await unskippableWait(CONFIG.sentenceFadeOutMs);
 
-            activeSentenceText.textContent = '';
+            clearSentenceDisplay();
             gifStageBox.classList.remove('is-mounted', 'is-visible');
             await unskippableWait(CONFIG.betweenSentenceGapMs);
           } else {
-            // Bước 16: Câu cuối cùng được giữ nguyên trên màn hình kết thúc, không tự động xóa
-            await unskippableWait(900);
+            await unskippableWait(850);
             setHappyExpression(false);
             moveAiCharacterTo('corner');
-            // AI nhìn về phía câu tỏ tình cuối
             setAiEyesLook(-5, -5.5, -4, -5.5);
           }
         }
 
-        // Hoàn tất chuỗi kể chuyện: Vô hiệu hóa nút "Câu tiếp theo", bật nút xem lại toàn bộ thư & khung tương tác
         isStoryFinished = true;
         skipSentenceBtn.disabled = true;
 
@@ -2424,13 +2706,12 @@
         toggleReviewBtn.classList.add('is-mounted');
 
         interactionSection.classList.add('is-mounted');
-        await unskippableWait(60);
+        await unskippableWait(50);
         interactionSection.classList.add('is-visible');
 
         startMascotAmbientBehavior();
       }
 
-      // Tạo danh sách giúp Thoa có thể bấm xem lại toàn bộ 6 câu nếu muốn đọc lại từ đầu
       function buildFullLetterReviewList() {
         fullLetterReview.innerHTML = '';
         STORY_SENTENCES.forEach((item, index) => {
@@ -2454,7 +2735,7 @@
       /* ----------------------------------------------------------------------
          12. TƯƠNG TÁC CUỐI TRANG: GỬI TRÁI TIM & NHẮN TIN CÓ TIM BAY LÊN
          ---------------------------------------------------------------------- */
-      function spawnFloatingHeartsFromButton(sourceElement, count = 7) {
+      function spawnFloatingHeartsFromButton(sourceElement, count = 6) {
         if (!sourceElement) return;
         const rect = sourceElement.getBoundingClientRect();
         const originX = rect.left + rect.width / 2;
@@ -2466,34 +2747,30 @@
         for (let i = 0; i < actualCount; i++) {
           const heartEl = document.createElement('div');
           heartEl.className = 'floating-mini-heart';
-          const size = 14 + Math.random() * 10;
+          const size = 14 + Math.random() * 9;
           const color = colors[i % colors.length];
 
-          heartEl.innerHTML = `
-            <svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="${color}">
-              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-            </svg>
-          `;
+          heartEl.innerHTML = `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="${color}"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`;
 
           heartEl.style.left = `${originX}px`;
           heartEl.style.top = `${originY}px`;
           document.body.appendChild(heartEl);
 
-          const driftX = (Math.random() - 0.5) * 110;
-          const liftY = -(65 + Math.random() * 75);
-          const rotateDeg = (Math.random() - 0.5) * 45;
-          const duration = 780 + Math.random() * 350;
+          const driftX = (Math.random() - 0.5) * 100;
+          const liftY = -(60 + Math.random() * 70);
+          const rotateDeg = (Math.random() - 0.5) * 40;
+          const duration = 750 + Math.random() * 300;
 
           const anim = heartEl.animate(
             [
-              { transform: 'translate(-50%, -50%) scale(0.5) rotate(0deg)', opacity: 0 },
+              { transform: 'translate3d(-50%, -50%, 0) scale(0.5) rotate(0deg)', opacity: 0 },
               {
-                transform: `translate(calc(-50% + ${driftX * 0.35}px), calc(-50% + ${liftY * 0.35}px)) scale(1.1) rotate(${rotateDeg * 0.5}deg)`,
+                transform: `translate3d(calc(-50% + ${driftX * 0.35}px), calc(-50% + ${liftY * 0.35}px), 0) scale(1.1) rotate(${rotateDeg * 0.5}deg)`,
                 opacity: 1,
                 offset: 0.25
               },
               {
-                transform: `translate(calc(-50% + ${driftX}px), calc(-50% + ${liftY}px)) scale(0.75) rotate(${rotateDeg}deg)`,
+                transform: `translate3d(calc(-50% + ${driftX}px), calc(-50% + ${liftY}px), 0) scale(0.75) rotate(${rotateDeg}deg)`,
                 opacity: 0
               }
             ],
@@ -2511,7 +2788,7 @@
 
       sendHeartMainBtn.addEventListener('click', async function () {
         heartCount += 1;
-        spawnFloatingHeartsFromButton(sendHeartMainBtn, 8);
+        spawnFloatingHeartsFromButton(sendHeartMainBtn, 7);
 
         if (heartCount === 1) {
           heartCounterNote.textContent = 'Thịnh nhận được 1 trái tim từ Thoa rồi nè ❤️';
@@ -2525,7 +2802,7 @@
       });
 
       miniHeartBtn.addEventListener('click', async function () {
-        spawnFloatingHeartsFromButton(miniHeartBtn, 6);
+        spawnFloatingHeartsFromButton(miniHeartBtn, 5);
         setHappyExpression(true, '^^');
         await unskippableWait(800);
         setHappyExpression(false);
@@ -2544,7 +2821,7 @@
         sentMessagesList.appendChild(msgItem);
 
         messageInput.value = '';
-        spawnFloatingHeartsFromButton(sendMessageBtn, 7);
+        spawnFloatingHeartsFromButton(sendMessageBtn, 6);
         setHappyExpression(true, 'Cảm ơn Thoa ❤️');
         setTimeout(() => setHappyExpression(false), 1100);
       }
